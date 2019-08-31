@@ -1,4 +1,5 @@
 ﻿using Kirei.Application;
+using Kirei.Application.Configuration;
 using Kirei.Infrastructure.Native;
 
 using System;
@@ -6,7 +7,7 @@ using System.Threading;
 
 namespace Kirei.Infrastructure
 {
-    internal class Input :
+    public class Input :
         IInputHandler, 
         IDisposable
     {
@@ -18,12 +19,13 @@ namespace Kirei.Infrastructure
         private Timer _timer;
         private bool hasIconsBeenHidden = false;
 
-        internal Input(int inactiveStateInSeconds = 300)
+        // todo: replace with appconfigurationprovider
+        public Input(IAppConfiguration appConfiguration)
         {
-            _inactiveStateInSeconds = inactiveStateInSeconds * 1000;
+            _inactiveStateInSeconds = appConfiguration.InactiveStateInSeconds;
         }
 
-        internal void Handle()
+        public void Handle()
         {
             _timer = new Timer(OnTimerCallback, null, 0, 500);
         }

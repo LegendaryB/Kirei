@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Kirei.Application
+﻿namespace Kirei.Application
 {
     public interface IDesktopAPI
     {
+        void ToggleIcons();
+        void ToggleTaskbar();
     }
 }

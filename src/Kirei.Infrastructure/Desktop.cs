@@ -6,7 +6,7 @@ using System;
 
 namespace Kirei.Infrastructure
 {
-    internal class Desktop :
+    public class Desktop :
         IDesktopAPI
     {
         private const string DefView_HOST_WINDOW_NAME = "Progman";
@@ -18,7 +18,7 @@ namespace Kirei.Infrastructure
         private IntPtr shellDefViewHwnd;
         private IntPtr taskbarHwnd;
 
-        internal void ToggleIcons()
+        public void ToggleIcons()
         {
             if (!User32.IsWindow(shellDefViewHwnd)) // window handle is not valid anymore
                 shellDefViewHwnd = GetShellDefView();
@@ -33,7 +33,7 @@ namespace Kirei.Infrastructure
                 IntPtr.Zero);
         }
 
-        internal void ToggleTaskbar()
+        public void ToggleTaskbar()
         {
             if (!User32.IsWindow(taskbarHwnd)) // window handle is not valid anymore
                 taskbarHwnd = User32.FindWindow(Taskbar_WINDOW_NAME, null);

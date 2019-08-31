@@ -1,12 +1,15 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Kirei.Application.Configuration;
+
+using Microsoft.Extensions.Configuration;
+
 using System;
 using System.IO;
 
 namespace Kirei.Configuration
 {
-    internal static class AppConfigurationProvider
+    public class AppConfigurationProvider : IAppConfigurationProvider
     {
-        internal static AppConfiguration Load()
+        public AppConfiguration Load()
         {
             var builder = new ConfigurationBuilder()
                    .SetBasePath(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory))

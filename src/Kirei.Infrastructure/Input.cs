@@ -1,11 +1,14 @@
-﻿using Kirei.Native;
+﻿using Kirei.Application;
+using Kirei.Infrastructure.Native;
 
 using System;
 using System.Threading;
 
-namespace Kirei
+namespace Kirei.Infrastructure
 {
-    internal class Input : IDisposable
+    internal class Input :
+        IInputHandler, 
+        IDisposable
     {
         public delegate void UserActiveOrInactiveEvent();
         public event UserActiveOrInactiveEvent UserActiveOrInactive;

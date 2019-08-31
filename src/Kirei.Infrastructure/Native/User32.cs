@@ -1,10 +1,10 @@
-﻿using Kirei.Native.Enums;
-using Kirei.Native.Structures;
+﻿using Kirei.Infrastructure.Native.Enums;
+using Kirei.Infrastructure.Native.Structures;
 
 using System;
 using System.Runtime.InteropServices;
 
-namespace Kirei.Native
+namespace Kirei.Infrastructure.Native
 {
     internal static class User32
     {

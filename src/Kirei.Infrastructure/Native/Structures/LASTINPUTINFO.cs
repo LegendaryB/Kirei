@@ -1,4 +1,4 @@
-﻿namespace Kirei.Native.Structures
+﻿namespace Kirei.Infrastructure.Native.Structures
 {
     internal struct LASTINPUTINFO
     {

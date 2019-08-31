@@ -1,11 +1,13 @@
-﻿using Kirei.Native;
-using Kirei.Native.Enums;
+﻿using Kirei.Application;
+using Kirei.Infrastructure.Native;
+using Kirei.Infrastructure.Native.Enums;
 
 using System;
 
-namespace Kirei
+namespace Kirei.Infrastructure
 {
-    internal class Desktop
+    internal class Desktop :
+        IDesktopAPI
     {
         private const string DefView_HOST_WINDOW_NAME = "Progman";
         private const string DefView_WINDOW_NAME = "SHELLDLL_DefView";

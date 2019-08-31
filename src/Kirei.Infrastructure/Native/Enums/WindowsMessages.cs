@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Kirei.Native.Enums
+namespace Kirei.Infrastructure.Native.Enums
 {
     [Flags]
     internal enum WindowsMessages : uint

@@ -1,4 +1,4 @@
-﻿namespace Kirei.Native.Enums
+﻿namespace Kirei.Infrastructure.Native.Enums
 {
     internal enum GetWindowTypes
     {

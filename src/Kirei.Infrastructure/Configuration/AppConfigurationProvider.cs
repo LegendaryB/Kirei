@@ -19,10 +19,10 @@ namespace Kirei.Configuration
 
             var appConfiguration = configuration.Get<AppConfiguration>();
 
-            appConfiguration.InactiveStateInMilliseconds =
-                appConfiguration.InactiveStateInMilliseconds == 0 ? 240 : appConfiguration.InactiveStateInMilliseconds;
+            appConfiguration.InactiveStateInSeconds =
+                appConfiguration.InactiveStateInSeconds == 0 ? 180 : appConfiguration.InactiveStateInSeconds;
 
-            appConfiguration.InactiveStateInMilliseconds *= 1000;
+            appConfiguration.InactiveStateInMilliseconds = appConfiguration.InactiveStateInSeconds * 1000;
 
             return appConfiguration;
         }

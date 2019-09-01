@@ -38,7 +38,7 @@ namespace Kirei.Infrastructure
                     hasIconsBeenHidden = false;
                 }
 
-                Thread.Sleep(500);
+                Thread.Sleep(100);
             }
         }
     }

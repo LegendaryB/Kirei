@@ -7,6 +7,7 @@ namespace Kirei.Configuration
         public bool RunOnStartup { get; set; }
         public bool HideDesktopIcons { get; set; }
         public bool HideTaskbar { get; set; }
-        public int InactiveStateInMilliseconds { get; set; }
+        public long InactiveStateInMilliseconds { get; set; }
+        public int InactiveStateInSeconds { get; set; }
     }
 }

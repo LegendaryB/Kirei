@@ -5,6 +5,7 @@
         bool RunOnStartup { get; set; }
         bool HideDesktopIcons { get; set; }
         bool HideTaskbar { get; set; }
-        int InactiveStateInMilliseconds { get; set; }
+        long InactiveStateInMilliseconds { get; set; }
+        int InactiveStateInSeconds { get; set; }
     }
 }

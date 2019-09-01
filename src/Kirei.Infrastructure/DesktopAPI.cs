@@ -12,6 +12,7 @@ namespace Kirei.Infrastructure
         private const string DefView_HOST_WINDOW_NAME = "Progman";
         private const string DefView_WINDOW_NAME = "SHELLDLL_DefView";
         private const string Taskbar_WINDOW_NAME = "Shell_TrayWnd";
+        private const string WorkerW_CLASS_NAME = "WorkerW";
 
         private readonly IntPtr _command = new IntPtr(0x7402);
 
@@ -57,14 +58,13 @@ namespace Kirei.Infrastructure
             if (shellDefViewHwnd != IntPtr.Zero)
                 return shellDefViewHwnd;
 
-            User32.EnumWindows(delegate (IntPtr hwnd, IntPtr lParam)
+            User32.EnumWindows(delegate (IntPtr hWnd, IntPtr lParam)
             {
-                //not a WorkerW
-                //if (!BFS.Window.GetClass(hwnd).Equals("WorkerW", StringComparison.OrdinalIgnoreCase))
-                //    return true;
+                if (!User32.GetClassName(hWnd).Equals(WorkerW_CLASS_NAME, StringComparison.OrdinalIgnoreCase))
+                    return true;
 
                 shellDefViewHwnd = User32.FindWindowEx(
-                    hwnd,
+                    hWnd,
                     IntPtr.Zero, 
                     DefView_WINDOW_NAME, 
                     IntPtr.Zero);

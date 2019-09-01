@@ -16,7 +16,7 @@ Kirei is a japanese word and means 'clean or neat'.
 <sub>Built with ❤︎ by Daniel Belz</sub>
 </div><br>
 
-# What is it?
+## What is it?
 Kirei is a simple application which can hide the desktop icons and the taskbar after a configureable period of time. It enhances the experience in combination
 with the famous application 'Wallpaper Engine'.
 
@@ -26,7 +26,7 @@ with the famous application 'Wallpaper Engine'.
 The configuration resides in the same folder as the application. There is a file called 'appsettings.json'. In this file you can configure the following:
 * Should the desktop icons be hidden after the time period?
 * Should the taskbar be hidden after the time period?
-* The time period in seconds
+* The time period in seconds.
 
 ## Contributing
 

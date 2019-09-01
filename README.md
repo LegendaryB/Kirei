@@ -16,14 +16,9 @@ Kirei is a japanese word and means 'clean or neat'.
 <sub>Built with ❤︎ by Daniel Belz</sub>
 </div><br>
 
-# Table of Content
-* [About](#about)
-* [Installation](#installation)
-* [Configuration](#configuration)
-* [Contributing](#contributing)
-* [License](#license)
-
-## About
+# What is it?
+Kirei is a simple application which can hide the desktop icons and the taskbar after a configureable period of time. It enhances the experience in combination
+with the famous application 'Wallpaper Engine'.
 
 ## Installation
 

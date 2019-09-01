@@ -16,33 +16,61 @@ namespace Kirei.Infrastructure
 
         private readonly IntPtr _command = new IntPtr(0x7402);
 
-        private IntPtr shellDefViewHwnd;
-        private IntPtr taskbarHwnd;
+        private bool hasMinimizedWindows = false;
+
+        private IntPtr ShellDefViewHwnd;
+        private IntPtr TaskBarHwnd;
+
+        public void ToggleTaskBar()
+        {
+            if (!User32.IsWindow(TaskBarHwnd)) // window handle is not valid anymore
+                TaskBarHwnd = User32.FindWindow(Taskbar_WINDOW_NAME, null);
+
+            if (User32.IsWindowVisible(TaskBarHwnd))
+                User32.ShowWindow(TaskBarHwnd, 0);
+            else
+                User32.ShowWindow(TaskBarHwnd, 1);
+        }
 
         public void ToggleIcons()
         {
-            if (!User32.IsWindow(shellDefViewHwnd)) // window handle is not valid anymore
-                shellDefViewHwnd = GetShellDefView();
-
-            if (shellDefViewHwnd == IntPtr.Zero)
+            if (!TryGetShellDefView())
                 return;
 
             User32.SendMessage(
-                shellDefViewHwnd, 
-                WindowsMessages.COMMAND, 
-                _command, 
+                ShellDefViewHwnd,
+                WindowsMessages.WM_COMMAND,
+                _command,
                 IntPtr.Zero);
         }
 
-        public void ToggleTaskbar()
+        public void ToggleWindows()
         {
-            if (!User32.IsWindow(taskbarHwnd)) // window handle is not valid anymore
-                taskbarHwnd = User32.FindWindow(Taskbar_WINDOW_NAME, null);
+            if (!TryGetShellDefView())
+                return;
 
-            if (User32.IsWindowVisible(taskbarHwnd))
-                User32.ShowWindow(taskbarHwnd, 0);
+            uint cmd;
+
+            if (hasMinimizedWindows)
+                cmd = (uint)SystemCommands.SC_RESTORE;
             else
-                User32.ShowWindow(taskbarHwnd, 1);
+                cmd = (uint)SystemCommands.SC_MINIMIZE;
+
+            User32.SendMessage(
+                ShellDefViewHwnd,
+                WindowsMessages.WM_COMMAND,
+                new IntPtr(cmd),
+                IntPtr.Zero);
+        }
+
+        private bool TryGetShellDefView()
+        {
+            if (User32.IsWindow(ShellDefViewHwnd))
+                return true;
+
+            ShellDefViewHwnd = GetShellDefView();
+
+            return ShellDefViewHwnd != IntPtr.Zero;
         }
 
         private IntPtr GetShellDefView()

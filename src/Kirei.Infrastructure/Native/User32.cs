@@ -28,13 +28,14 @@ namespace Kirei.Infrastructure.Native
         [DllImport("user32.dll")]
         internal static extern IntPtr GetWindow(
             IntPtr hWnd, 
-            GetWindowTypes uCmd);
+            GetWindowConstants uCmd);
 
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         internal static extern IntPtr SendMessage(
             IntPtr hWnd, 
             WindowsMessages Msg, 
-            IntPtr wParam, IntPtr lParam);
+            IntPtr wParam, 
+            IntPtr lParam);
 
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]

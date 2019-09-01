@@ -7,7 +7,7 @@ namespace Kirei
 {
     internal class App : IDisposable
     {
-        private IAppConfiguration _config;
+        private IAppConfiguration _appConfiguration;
         private IDesktopAPI _desktopAPI;
         private IInputHandler _inputHandler;
 
@@ -15,7 +15,7 @@ namespace Kirei
             IDesktopAPI desktopAPI,
             IInputHandler inputHandler)
         {
-            _config = appConfiguration;
+            _appConfiguration = appConfiguration;
             _desktopAPI = desktopAPI;
             _inputHandler = inputHandler;
         }
@@ -28,18 +28,21 @@ namespace Kirei
 
         private void OnUserActiveOrInactive()
         {
-            if (_config.HideDesktopIcons)
+            if (_appConfiguration.HideDesktopIcons)
                 _desktopAPI.ToggleIcons();
 
-            if (_config.HideTaskbar)
-                _desktopAPI.ToggleTaskbar();
+            if (_appConfiguration.HideTaskbar)
+                _desktopAPI.ToggleTaskBar();
+
+            if (_appConfiguration.MinimizeAllApplications)
+                _desktopAPI.ToggleWindows();
         }
 
         public void Dispose()
         {
             _inputHandler = null;
             _desktopAPI = null;
-            _config = null;
+            _appConfiguration = null;
         }
     }
 }

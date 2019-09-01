@@ -2,7 +2,8 @@
 {
     public interface IDesktopAPI
     {
+        void ToggleWindows();
         void ToggleIcons();
-        void ToggleTaskbar();
+        void ToggleTaskBar();
     }
 }

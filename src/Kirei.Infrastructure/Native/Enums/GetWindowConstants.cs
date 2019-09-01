@@ -1,6 +1,6 @@
 ﻿namespace Kirei.Infrastructure.Native.Enums
 {
-    internal enum GetWindowTypes
+    internal enum GetWindowConstants
     {
         GW_HWNDFIRST = 0,
         GW_HWNDLAST = 1,

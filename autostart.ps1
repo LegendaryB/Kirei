@@ -1,5 +1,14 @@
-$registryPath = ""
-$name = "Kirei"
-$value = $PSScriptRoot + "\Kirei.exe"
+$RegistryKey = "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run"
+$RegistryValue = "Kirei"
+$RegistryData = $PSScriptRoot + "\Kirei.exe"
 
-New-ItemProperty -Path $registryPath -Name $name -Value $value -PropertyType String -Force | Out-Null
+Write-Host $RegistryData
+
+Try
+{
+	New-ItemProperty -Type "String" -Path $RegistryKey -Name $RegistryValue -Value $RegistryData -Force
+}
+catch 
+{
+	Write-Error -Message $_
+}

@@ -1,6 +1,6 @@
 ﻿﻿﻿<h1 align="center">Kirei</h1><div align="center">
 
-<h4 align="center">Enhance your Wallpaper Engine even more!</h4>
+<h4 align="center">Enhance your 'Wallpaper Engine' experience even more!</h4>
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-c-sharp.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
@@ -23,6 +23,10 @@ with the famous application 'Wallpaper Engine'.
 ## Installation
 
 ## Configuration
+The configuration resides in the same folder as the application. There is a file called 'appsettings.json'. In this file you can configure the following:
+* Should the desktop icons be hidden after the time period?
+* Should the taskbar be hidden after the time period?
+* The time period in seconds
 
 ## Contributing
 

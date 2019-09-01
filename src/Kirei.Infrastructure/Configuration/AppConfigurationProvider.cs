@@ -7,9 +7,9 @@ using System.IO;
 
 namespace Kirei.Configuration
 {
-    public class AppConfigurationProvider : IAppConfigurationProvider
+    public static class AppConfigurationProvider
     {
-        public AppConfiguration Load()
+        public static IAppConfiguration Load()
         {
             var builder = new ConfigurationBuilder()
                    .SetBasePath(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory))
@@ -19,8 +19,10 @@ namespace Kirei.Configuration
 
             var appConfiguration = configuration.Get<AppConfiguration>();
 
-            appConfiguration.InactiveStateInSeconds =
-                appConfiguration.InactiveStateInSeconds == 0 ? 240 : appConfiguration.InactiveStateInSeconds;
+            appConfiguration.InactiveStateInMilliseconds =
+                appConfiguration.InactiveStateInMilliseconds == 0 ? 240 : appConfiguration.InactiveStateInMilliseconds;
+
+            appConfiguration.InactiveStateInMilliseconds *= 1000;
 
             return appConfiguration;
         }

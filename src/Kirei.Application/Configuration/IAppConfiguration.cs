@@ -4,6 +4,6 @@
     {
         bool HideDesktopIcons { get; set; }
         bool HideTaskbar { get; set; }
-        int InactiveStateInSeconds { get; set; }
+        int InactiveStateInMilliseconds { get; set; }
     }
 }

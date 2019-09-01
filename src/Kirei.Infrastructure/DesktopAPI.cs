@@ -6,7 +6,7 @@ using System;
 
 namespace Kirei.Infrastructure
 {
-    public class Desktop :
+    public class DesktopAPI :
         IDesktopAPI
     {
         private const string DefView_HOST_WINDOW_NAME = "Progman";

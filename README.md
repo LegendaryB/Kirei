@@ -24,7 +24,7 @@ with the famous application 'Wallpaper Engine'.
 The configuration resides in the same folder as the application. There is a file called 'appsettings.json'. In this file you can configure the following:
 * Should the application be executed at startup?
 * Should the desktop icons be hidden after the time period?
-* Should the taskbar be hidden after the time period?
+* Should the taskbar be set to auto hide after the time period?
 * The time period in seconds.
 
 ## Use the application

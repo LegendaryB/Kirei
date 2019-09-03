@@ -19,10 +19,8 @@ namespace Kirei
 
             var serviceProvider = ConfigureServices(appConfiguration);
 
-            using (var app = serviceProvider.GetService<App>())
-            {
-                app.Run();
-            }
+            var app = serviceProvider.GetService<App>();
+            app.Run();
 
             Console.ReadLine();
         }
@@ -31,6 +29,7 @@ namespace Kirei
         {
             return new ServiceCollection()
                 .AddSingleton(appConfiguration)
+                .AddSingleton<IInstallWizard, InstallWizard>()
                 .AddSingleton<IDesktop, Desktop>()
                 .AddSingleton<IInputHandler, InputHandler>()
                 .AddSingleton<App>()

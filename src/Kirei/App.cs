@@ -5,23 +5,29 @@ using System;
 
 namespace Kirei
 {
-    internal class App : IDisposable
+    internal class App
     {
-        private IAppConfiguration _appConfiguration;
-        private IDesktop _desktopAPI;
-        private IInputHandler _inputHandler;
+        private readonly IAppConfiguration _appConfiguration;
+        private readonly IInstallWizard _installWizard;
+        private readonly IDesktop _desktopAPI;
+        private readonly IInputHandler _inputHandler;
 
         public App(IAppConfiguration appConfiguration,
+            IInstallWizard installWizard,
             IDesktop desktopAPI,
             IInputHandler inputHandler)
         {
             _appConfiguration = appConfiguration;
+            _installWizard = installWizard;
             _desktopAPI = desktopAPI;
             _inputHandler = inputHandler;
         }
 
         internal void Run()
         {
+            if (_appConfiguration.RunOnStartup)
+                _installWizard.RunOnStartup();
+
             _inputHandler.Handler = OnUserActiveOrInactive;
             _inputHandler.Handle();
         }
@@ -36,13 +42,6 @@ namespace Kirei
 
             if (_appConfiguration.MinimizeAllApplications)
                 _desktopAPI.ToggleWindows();
-        }
-
-        public void Dispose()
-        {
-            _inputHandler = null;
-            _desktopAPI = null;
-            _appConfiguration = null;
         }
     }
 }

@@ -21,8 +21,6 @@ namespace Kirei
 
             var app = serviceProvider.GetService<App>();
             app.Run();
-
-            Console.ReadLine();
         }
 
         private static ServiceProvider ConfigureServices(IAppConfiguration appConfiguration)

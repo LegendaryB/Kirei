@@ -8,11 +8,11 @@ namespace Kirei
     internal class App : IDisposable
     {
         private IAppConfiguration _appConfiguration;
-        private IDesktopAPI _desktopAPI;
+        private IDesktop _desktopAPI;
         private IInputHandler _inputHandler;
 
         public App(IAppConfiguration appConfiguration,
-            IDesktopAPI desktopAPI,
+            IDesktop desktopAPI,
             IInputHandler inputHandler)
         {
             _appConfiguration = appConfiguration;

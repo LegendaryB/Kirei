@@ -15,6 +15,7 @@ namespace Kirei.Infrastructure
         private bool hasIconsBeenHidden = false;
 
         public Action Handler { get; set; }
+        public bool IgnoreNextMessage { get; set; }
 
         public InputHandler(IAppConfiguration appConfiguration)
         {
@@ -25,7 +26,7 @@ namespace Kirei.Infrastructure
         {
             while (true)
             {
-                var lastInputInMilliseconds = User32.GetLastInputTimeInMilliseconds();
+                var lastInputInMilliseconds = User32.GetUserIdleTime();
 
                 if (lastInputInMilliseconds >= _appConfiguration.InactiveStateInMilliseconds && !hasIconsBeenHidden)
                 {
@@ -38,7 +39,7 @@ namespace Kirei.Infrastructure
                     hasIconsBeenHidden = false;
                 }
 
-                Thread.Sleep(100);
+                Thread.Sleep(200);
             }
         }
     }

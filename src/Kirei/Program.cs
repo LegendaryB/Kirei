@@ -2,8 +2,10 @@
 using Kirei.Application.Configuration;
 using Kirei.Configuration;
 using Kirei.Infrastructure;
+using Kirei.Infrastructure.DesktopAPI;
 
 using Microsoft.Extensions.DependencyInjection;
+
 using System;
 
 namespace Kirei
@@ -29,7 +31,7 @@ namespace Kirei
         {
             return new ServiceCollection()
                 .AddSingleton(appConfiguration)
-                .AddSingleton<IDesktopAPI, DesktopAPI>()
+                .AddSingleton<IDesktop, Desktop>()
                 .AddSingleton<IInputHandler, InputHandler>()
                 .AddSingleton<App>()
                 .BuildServiceProvider();

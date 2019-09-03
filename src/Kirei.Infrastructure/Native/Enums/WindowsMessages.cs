@@ -1,6 +1,9 @@
-﻿namespace Kirei.Infrastructure.Native.Enums
+﻿using System;
+
+namespace Kirei.Infrastructure.Native.Enums
 {
-    internal enum WindowsMessages : uint
+    [Flags]
+    internal enum WindowsMessages : int
     {
         WM_COMMAND = 0x0111
     }

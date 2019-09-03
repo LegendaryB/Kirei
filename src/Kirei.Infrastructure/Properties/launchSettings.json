@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Kirei.Infrastructure": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

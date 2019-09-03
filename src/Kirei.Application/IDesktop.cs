@@ -1,6 +1,6 @@
 ﻿namespace Kirei.Application
 {
-    public interface IDesktopAPI
+    public interface IDesktop
     {
         void ToggleWindows();
         void ToggleIcons();

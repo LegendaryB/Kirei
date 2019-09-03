@@ -1,6 +1,6 @@
 ﻿﻿﻿<h1 align="center">Kirei</h1><div align="center">
 
-<h4 align="center">Enhance your 'Wallpaper Engine' experience even more!</h4>
+<h4 align="center">Enhance your Wallpaper Engine experience even more!</h4>
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-c-sharp.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
@@ -10,7 +10,7 @@
 [![GitHub last commit](https://img.shields.io/github/last-commit/LegendaryB/Kirei.svg?longCache=true&style=flat-square)](https://github.com/LegendaryB/Kirei)
 [![GitHub issues](https://img.shields.io/github/issues/LegendaryB/Kirei.svg?longCache=true&style=flat-square)](https://github.com/LegendaryB/Kirei/issues)
 
-Kirei is a japanese word and means 'clean or neat'.
+Kirei is a japanese word and means clean or neat.
 <br>
 <br>
 <sub>Built with ❤︎ by Daniel Belz</sub>

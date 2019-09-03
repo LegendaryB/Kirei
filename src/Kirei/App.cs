@@ -31,7 +31,7 @@ namespace Kirei
             if (_appConfiguration.HideDesktopIcons)
                 _desktopAPI.ToggleIcons();
 
-            if (_appConfiguration.HideTaskbar)
+            if (_appConfiguration.SetAutoHideTaskBar)
                 _desktopAPI.ToggleTaskBar();
 
             if (_appConfiguration.MinimizeAllApplications)

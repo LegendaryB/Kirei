@@ -14,11 +14,6 @@ namespace Kirei.Infrastructure.Native
         [DllImport("user32.dll")]
         internal static extern IntPtr GetShellWindow();
 
-        [DllImport("user32.dll")]
-        internal static extern IntPtr FindWindow(
-            string lpClassName, 
-            string lpWindowName);
-
         [DllImport("user32.dll", CharSet = CharSet.Unicode)]
         internal static extern IntPtr FindWindowEx(
             IntPtr hWndParent, 
@@ -38,13 +33,5 @@ namespace Kirei.Infrastructure.Native
         internal static extern bool EnumWindows(
             EnumWindowProc callDelegate, 
             IntPtr lParam);
-
-        [DllImport("user32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        internal static extern bool IsWindow(IntPtr hWnd);
-
-        [DllImport("user32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        internal static extern bool IsWindowVisible(IntPtr hWnd);
     }
 }

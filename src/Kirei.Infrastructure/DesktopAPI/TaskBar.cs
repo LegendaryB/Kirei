@@ -1,44 +1,65 @@
 ﻿using Kirei.Infrastructure.Native;
+using Kirei.Infrastructure.Native.Enums;
+using Kirei.Infrastructure.Native.Structures;
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 namespace Kirei.Infrastructure.DesktopAPI
 {
     internal class TaskBar
     {
-        [DllImport("user32.dll")]
-        private static extern int ShowWindow(
-            IntPtr hWnd,
-            int nCmdShow);
+        private const string APPLICATION_MANAGER_SHELL = "ApplicationManager_DesktopShellWindow";
 
-        private const string SHELL_TRAYWND = "Shell_TrayWnd";
-        private const string SYSTEM_TRAYWND = "System_TrayWnd";
+        private const string SHELL = "Shell";
+        private const string TRAYWND = "TrayWnd";
 
-        private const int SW_HIDE = 0;
-        private const int SW_SHOW = 1;
+        private readonly IEnumerable<IntPtr> _taskBarHandles;
 
-        /// <summary>
-        /// Completely hide the taskbar. Useful combined with SetTaskbarState.
-        /// </summary>
-        /// <param name="hidden">true for hidden taskbar, false to restore</param>
-
-        public void SetTaskBarHidden(bool hidden)
+        internal TaskBar()
         {
-            var count = User32.GetMonitorCount();
-            IntPtr hwnd = User32.FindWindow("Shell_TrayWnd", "");
-            
-            ShowWindow(hwnd, hidden ? SW_HIDE : SW_SHOW);
+            _taskBarHandles = FetchTaskBarHandles();
         }
 
-        //private IntPtr FetchTaskBarHandle()
-        //{
-        //    var handle = User32.FindWindow(SYSTEM_TRAYWND, null);
+        internal void SetAutoHide(bool hide)
+        {
+            var option = hide ? AppBarStates.AutoHide : AppBarStates.AlwaysOnTop;
 
-        //    if (handle == IntPtr.Zero)
-        //        handle = User32.FindWindow(SHELL_TRAYWND, null);
+            var appBarData = new APPBARDATA
+            {
+                cbSize = (uint)Marshal.SizeOf<APPBARDATA>(),
+                lParam = (int)option
+            };
 
-        //    return handle;
-        //}
+            foreach (var handle in _taskBarHandles)
+            {
+                appBarData.hWnd = handle;
+                Shell32.SHAppBarMessage((uint)AppBarMessages.SetState, ref appBarData);
+            }
+        }
+
+        private IEnumerable<IntPtr> FetchTaskBarHandles()
+        {
+            var handles = new List<IntPtr>();
+
+            User32.EnumWindows(delegate (IntPtr hWnd, IntPtr lParam)
+            {
+                var className = User32.GetClassName(hWnd);
+
+                if (className == APPLICATION_MANAGER_SHELL ||
+                    !className.Contains(SHELL) ||
+                    !className.Contains(TRAYWND))
+                {
+                    return true;
+                }
+
+                handles.Add(hWnd);
+
+                return true;
+            }, IntPtr.Zero);
+
+            return handles;
+        }
     }
 }

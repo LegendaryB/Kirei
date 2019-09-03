@@ -19,6 +19,7 @@ namespace Kirei.Infrastructure.DesktopAPI
         private readonly IntPtr _shellDefViewHandle;
 
         private bool windowsMinimized = false;
+        private bool taskBarHidden = false;
 
         public Desktop()
         {
@@ -29,7 +30,8 @@ namespace Kirei.Infrastructure.DesktopAPI
 
         public void ToggleTaskBar()
         {
-            _taskBar.SetTaskBarHidden(false);
+            taskBarHidden = !taskBarHidden;
+            _taskBar.SetAutoHide(taskBarHidden);
         }
 
         public void ToggleIcons()
@@ -44,15 +46,11 @@ namespace Kirei.Infrastructure.DesktopAPI
         public void ToggleWindows()
         {
             if (windowsMinimized)
-            {
                 _shell.UndoMinimizeWindows();
-                windowsMinimized = false;
-            }
             else
-            {
                 _shell.MinimizeWindows();
-                windowsMinimized = true;
-            }
+
+            windowsMinimized = !windowsMinimized;
         }
 
         private IntPtr FetchShellDefViewHandle()

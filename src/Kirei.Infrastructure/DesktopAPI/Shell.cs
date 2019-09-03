@@ -11,7 +11,6 @@ namespace Kirei.Infrastructure.DesktopAPI
         internal Shell()
         {
             _shell = CreateShellCOMInstance();
-            
         }
 
         internal void MinimizeWindows() => _shell.MinimizeAll();

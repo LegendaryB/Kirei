@@ -17,7 +17,7 @@ Kirei is a japanese word and means clean or neat.
 </div><br>
 
 ## Configuration
-The configuration resides in the same folder as the application. There is a file called 'appsettings.json'. In this file you can configure the following:
+The configuration resides in the same folder as the application. There is a file called `appsettings.json`. In this file you can configure the following:
 * Should the application be executed at startup?
 * Should the desktop icons be hidden after the time period?
 * Should the taskbar be set to auto hide after the time period?
@@ -25,7 +25,7 @@ The configuration resides in the same folder as the application. There is a file
 
 ## Use the application
 1. Extract the folder and go into it.
-2. Configure your settings in 'appsettings.json'.
+2. Configure your settings in `appsettings.json`.
 2. Execute the application.
 
 ## Contributing

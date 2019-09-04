@@ -1,6 +1,6 @@
 ﻿using Kirei.Application.Configuration;
 
-namespace Kirei.Configuration
+namespace Kirei.Domain.Configuration
 {
     public class AppConfiguration : IAppConfiguration
     {

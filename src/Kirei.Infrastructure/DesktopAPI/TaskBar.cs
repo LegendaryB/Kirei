@@ -1,10 +1,10 @@
 ﻿using Kirei.Infrastructure.Native;
-using Kirei.Infrastructure.Native.Enums;
-using Kirei.Infrastructure.Native.Structures;
+using Kirei.Domain.Native.Enums;
+using Kirei.Domain.Native.Structures;
+using Kirei.Domain.DesktopAPI;
 
 using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 
 namespace Kirei.Infrastructure.DesktopAPI
 {
@@ -15,33 +15,29 @@ namespace Kirei.Infrastructure.DesktopAPI
         private const string SHELL = "Shell";
         private const string TRAYWND = "TrayWnd";
 
-        private readonly IEnumerable<IntPtr> _taskBarHandles;
+        private readonly List<TaskBarDescriptor> _taskBarDescriptorList;
+        private readonly RECT _emptyRect = new RECT();
 
         internal TaskBar()
         {
-            _taskBarHandles = FetchTaskBarHandles();
+            _taskBarDescriptorList = FetchTaskBarHandles();
         }
 
-        internal void SetAutoHide(bool hide)
+        internal void Show()
         {
-            var option = hide ? AppBarStates.AutoHide : AppBarStates.AlwaysOnTop;
-
-            var appBarData = new APPBARDATA
-            {
-                cbSize = (uint)Marshal.SizeOf<APPBARDATA>(),
-                lParam = (int)option
-            };
-
-            foreach (var handle in _taskBarHandles)
-            {
-                appBarData.hWnd = handle;
-                Shell32.SHAppBarMessage((uint)AppBarMessages.SetState, ref appBarData);
-            }
+            foreach (var descriptor in _taskBarDescriptorList)
+                User32.SetWindowPos(descriptor.Handle, descriptor.Position, SetWindowPosFlags.ShowWindow);
         }
 
-        private IEnumerable<IntPtr> FetchTaskBarHandles()
+        internal void Hide()
         {
-            var handles = new List<IntPtr>();
+            foreach (var descriptor in _taskBarDescriptorList)
+                User32.SetWindowPos(descriptor.Handle, _emptyRect, SetWindowPosFlags.HideWindow);
+        }
+
+        private List<TaskBarDescriptor> FetchTaskBarHandles()
+        {
+            var taskBarDescriptorList = new List<TaskBarDescriptor>();
 
             User32.EnumWindows(delegate (IntPtr hWnd, IntPtr lParam)
             {
@@ -54,12 +50,18 @@ namespace Kirei.Infrastructure.DesktopAPI
                     return true;
                 }
 
-                handles.Add(hWnd);
+                var descriptor = new TaskBarDescriptor
+                {
+                    Handle = hWnd,
+                    Position = User32.GetWindowRect(hWnd)
+                };
+
+                taskBarDescriptorList.Add(descriptor);
 
                 return true;
             }, IntPtr.Zero);
 
-            return handles;
+            return taskBarDescriptorList;
         }
     }
 }

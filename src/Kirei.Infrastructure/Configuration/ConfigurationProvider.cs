@@ -1,5 +1,4 @@
-﻿using Kirei.Application.Configuration;
-using Kirei.Domain.Configuration;
+﻿using Kirei.Domain.Configuration;
 
 using Microsoft.Extensions.Configuration;
 
@@ -8,20 +7,20 @@ using System.IO;
 
 namespace Kirei.Infrastructure.Configuration
 {
-    public static class AppConfigurationProvider
+    public static class ConfigurationProvider
     {
-        public static IAppConfiguration Configuration { get; private set; }
+        public static AppConfiguration Configuration { get; private set; }
 
         private const string SETTINGS_FILE = "appsettings.json";
 
         private static readonly string _basePath;
-        private static readonly AppConfigurationFileWatcher _fileWatcher;
+        private static readonly ConfigurationFileWatcher _fileWatcher;
 
-        static AppConfigurationProvider()
+        static ConfigurationProvider()
         {
             _basePath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
 
-            _fileWatcher = new AppConfigurationFileWatcher(() =>
+            _fileWatcher = new ConfigurationFileWatcher(() =>
             {
                 Load(false);
             });
@@ -39,10 +38,13 @@ namespace Kirei.Infrastructure.Configuration
 
             var appConfiguration = configuration.Get<AppConfiguration>();
 
-            appConfiguration.InactiveStateInSeconds =
-                appConfiguration.InactiveStateInSeconds == 0 ? 180 : appConfiguration.InactiveStateInSeconds;
+            appConfiguration.Application.InactiveAfter =
+                appConfiguration.Application.InactiveAfter == 0 ? 180 : appConfiguration.Application.InactiveAfter;
 
-            appConfiguration.InactiveStateInMilliseconds = appConfiguration.InactiveStateInSeconds * 1000;
+            appConfiguration.Application.InactiveAfterMs = appConfiguration.Application.InactiveAfter * 1000;
+
+            appConfiguration.Application.InputPollingRate =
+                appConfiguration.Application.InputPollingRate == 0 ? 200 : appConfiguration.Application.InputPollingRate;
 
             Configuration = appConfiguration;
 

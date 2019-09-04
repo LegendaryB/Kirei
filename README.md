@@ -22,8 +22,8 @@ The configuration resides in the same folder as the application. There is a file
 {
   "Application": {
     "ShouldRunOnStartup": true,
-    "InactiveAfter": 0, // time period after which the actions are executed in seconds. default: 180s (3m)
-    "InputPollingRate": 0 // polling rate for the input handler in milliseconds. default: 200ms
+    "InactiveAfter": 0,
+    "InputPollingRate": 0
   },
   "Actions": {
     "HideDesktopIcons": true,
@@ -32,6 +32,11 @@ The configuration resides in the same folder as the application. There is a file
   }  
 }
 ```
+
+|Property   |Description   |
+|---|---|
+|InactiveAfter   |Time period after which the actions are executed in seconds. default: 180s (3m)   |
+|InputPollingRate   |Polling rate for the input handler in milliseconds. default: 200ms   |
 
 ## Use the application
 1. Extract the folder and go into it.

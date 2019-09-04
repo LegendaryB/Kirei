@@ -1,6 +1,6 @@
-﻿namespace Kirei.Application
+﻿namespace Kirei.Application.System.Desktop
 {
-    public interface IDesktop
+    public interface IDesktopService
     {
         void ToggleWindows();
         void ToggleIcons();

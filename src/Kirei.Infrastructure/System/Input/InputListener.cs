@@ -1,21 +1,21 @@
-﻿using Kirei.Application;
+﻿using Kirei.Application.System.Input;
 using Kirei.Infrastructure.Configuration;
 using Kirei.Infrastructure.Native;
 
-using System;
 using System.Threading;
 
-namespace Kirei.Infrastructure
+namespace Kirei.Infrastructure.System.Input
 {
-    public class InputHandler :
-        IInputHandler
+    public class InputListener :
+        IInputListener
     {
+        private IInputActionMapper _inputActionMapper;
         private bool hasIconsBeenHidden = false;
 
-        public Action Handler { get; set; }
-
-        public void Handle()
+        public void Listen(IInputActionMapper inputActionMapper)
         {
+            _inputActionMapper = inputActionMapper;
+
             while (true)
             {
                 var lastInputInMilliseconds = User32.GetUserIdleTime();
@@ -23,14 +23,14 @@ namespace Kirei.Infrastructure
 
                 if (lastInputInMilliseconds >= inactiveAfterMs && !hasIconsBeenHidden)
                 {
-                    Handler?.Invoke();
+                    _inputActionMapper.HandleInput();
                     hasIconsBeenHidden = true;
                 }
                 else if (lastInputInMilliseconds < inactiveAfterMs && hasIconsBeenHidden)
                 {
-                    Handler?.Invoke();
+                    _inputActionMapper.HandleInput();
                     hasIconsBeenHidden = false;
-                }
+                }                
 
                 Thread.Sleep(ConfigurationProvider.Configuration.Application.InputPollingRate);
             }

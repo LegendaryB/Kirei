@@ -3,7 +3,7 @@ using Kirei.Domain.Native.Enums;
 
 using System;
 
-namespace Kirei.Infrastructure.Desktop
+namespace Kirei.Infrastructure.System.Desktop
 {
     internal class Shell
     {

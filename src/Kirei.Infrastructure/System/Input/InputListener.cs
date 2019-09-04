@@ -1,10 +1,10 @@
-﻿using Kirei.Application.Input;
+﻿using Kirei.Application.System.Input;
 using Kirei.Infrastructure.Configuration;
 using Kirei.Infrastructure.Native;
 
 using System.Threading;
 
-namespace Kirei.Infrastructure.Input
+namespace Kirei.Infrastructure.System.Input
 {
     public class InputListener :
         IInputListener

@@ -1,6 +1,6 @@
-﻿using Kirei.Application.Desktop;
+﻿using Kirei.Application.System.Desktop;
 
-namespace Kirei.Infrastructure.Desktop
+namespace Kirei.Infrastructure.System.Desktop
 {
     public class DesktopService :
         IDesktopService

@@ -1,4 +1,4 @@
-﻿namespace Kirei.Application.Desktop
+﻿namespace Kirei.Application.System.Desktop
 {
     public interface IDesktopService
     {

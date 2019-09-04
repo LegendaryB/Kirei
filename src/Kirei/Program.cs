@@ -1,8 +1,9 @@
 ﻿using Kirei.Application;
-using Kirei.Application.Input;
+using Kirei.Application.System.Desktop;
+using Kirei.Application.System.Input;
 using Kirei.Infrastructure;
-using Kirei.Infrastructure.Desktop;
-using Kirei.Infrastructure.Input;
+using Kirei.Infrastructure.System.Desktop;
+using Kirei.Infrastructure.System.Input;
 
 using Microsoft.Extensions.DependencyInjection;
 

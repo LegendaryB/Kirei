@@ -17,7 +17,7 @@ Kirei is a japanese word and means clean or neat.
 </div><br>
 
 ## Configuration
-The configuration resides in the same folder as the application. There is a file called `appsettings.json`.
+The `appsettings.json` file resides in the same folder as the application.
 ```json
 {
   "Application": {
@@ -33,10 +33,10 @@ The configuration resides in the same folder as the application. There is a file
 }
 ```
 
-|Property   |Description   |
-|---|---|
-|InactiveAfter   |Time period after which the actions are executed in seconds. default: 180s (3m)   |
-|InputPollingRate   |Polling rate for the input handler in milliseconds. default: 200ms   |
+|Property   |Description   |Default value   |
+|---|---|---|
+|InactiveAfter   |Time period after which the actions are executed in seconds.   |180s (3 minutes)|
+|InputPollingRate   |Polling rate for the input handler in milliseconds.   |200ms|
 
 ## Use the application
 1. Extract the folder and go into it.

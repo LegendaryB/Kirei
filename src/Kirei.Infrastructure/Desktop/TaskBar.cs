@@ -1,12 +1,12 @@
 ﻿using Kirei.Infrastructure.Native;
 using Kirei.Domain.Native.Enums;
 using Kirei.Domain.Native.Structures;
-using Kirei.Domain.DesktopAPI;
+using Kirei.Domain.Desktop;
 
 using System;
 using System.Collections.Generic;
 
-namespace Kirei.Infrastructure.DesktopAPI
+namespace Kirei.Infrastructure.Desktop
 {
     internal class TaskBar
     {

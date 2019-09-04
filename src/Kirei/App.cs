@@ -1,21 +1,26 @@
 ﻿using Kirei.Application;
+using Kirei.Application.Desktop;
+using Kirei.Application.Input;
 using Kirei.Infrastructure.Configuration;
 
 namespace Kirei
 {
     internal class App
     {
-        private readonly IInstallWizard _installWizard;
-        private readonly IDesktop _desktopAPI;
-        private readonly IInputHandler _inputHandler;
+        private readonly IInstallWizard _installWizard;        
+        private readonly IInputListener _inputListener;
+        private readonly IInputActionMapper _inputActionMapper;
+        private readonly IDesktopService _desktopAPI;
 
         public App(IInstallWizard installWizard,
-            IDesktop desktopAPI,
-            IInputHandler inputHandler)
+            IInputListener inputListener,
+            IInputActionMapper inputActionMapper,
+            IDesktopService desktopAPI)
         {
-            _installWizard = installWizard;
+            _installWizard = installWizard;            
+            _inputListener = inputListener;
+            _inputActionMapper = inputActionMapper;
             _desktopAPI = desktopAPI;
-            _inputHandler = inputHandler;
         }
 
         internal void Run()
@@ -23,20 +28,23 @@ namespace Kirei
             if (ConfigurationProvider.Configuration.Application.ShouldRunOnStartup)
                 _installWizard.RunOnStartup();
 
-            _inputHandler.Handler = OnUserActiveOrInactive;
-            _inputHandler.Handle();
-        }
+            var cfg = ConfigurationProvider
+                .Configuration
+                .Actions;
 
-        private void OnUserActiveOrInactive()
-        {
-            if (ConfigurationProvider.Configuration.Actions.HideDesktopIcons)
-                _desktopAPI.ToggleIcons();
+            _inputActionMapper.RegisterAction(
+                _desktopAPI.ToggleIcons, 
+                () => cfg.HideDesktopIcons);
 
-            if (ConfigurationProvider.Configuration.Actions.HideTaskBar)
-                _desktopAPI.ToggleTaskBar();
+            _inputActionMapper.RegisterAction(
+                _desktopAPI.ToggleTaskBar,
+                () => cfg.HideTaskBar);
 
-            if (ConfigurationProvider.Configuration.Actions.HideApplicationWindows)
-                _desktopAPI.ToggleWindows();
+            _inputActionMapper.RegisterAction(
+                _desktopAPI.ToggleWindows,
+                () => cfg.HideApplicationWindows);
+
+            _inputListener.Listen(_inputActionMapper);
         }
     }
 }

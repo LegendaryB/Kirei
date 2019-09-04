@@ -1,9 +1,9 @@
-﻿using Kirei.Application;
+﻿using Kirei.Application.Desktop;
 
-namespace Kirei.Infrastructure.DesktopAPI
+namespace Kirei.Infrastructure.Desktop
 {
-    public class Desktop :
-        IDesktop
+    public class DesktopService :
+        IDesktopService
     {
         private readonly Shell _shell;
         private readonly TaskBar _taskBar;
@@ -11,7 +11,7 @@ namespace Kirei.Infrastructure.DesktopAPI
         private bool windowsMinimized = false;
         private bool taskBarHidden = false;
 
-        public Desktop()
+        public DesktopService()
         {
             _shell = new Shell();
             _taskBar = new TaskBar();

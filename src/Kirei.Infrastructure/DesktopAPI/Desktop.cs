@@ -10,7 +10,6 @@ namespace Kirei.Infrastructure.DesktopAPI
 
         private bool windowsMinimized = false;
         private bool taskBarHidden = false;
-        private bool desktopIconsHidden = false;
 
         public Desktop()
         {
@@ -28,15 +27,7 @@ namespace Kirei.Infrastructure.DesktopAPI
             taskBarHidden = !taskBarHidden;
         }
 
-        public void ToggleIcons()
-        {
-            if (desktopIconsHidden)
-                _shell.ShowDesktopIcons();
-            else
-                _shell.HideDesktopIcons();
-
-            desktopIconsHidden = !taskBarHidden;
-        }
+        public void ToggleIcons() => _shell.ToggleDesktopIcons();
 
         public void ToggleWindows()
         {

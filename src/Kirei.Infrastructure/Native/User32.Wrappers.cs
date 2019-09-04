@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Kirei.Infrastructure.Native.Enums;
+using Kirei.Infrastructure.Native.Structures;
+
+using System;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -21,8 +24,21 @@ namespace Kirei.Infrastructure.Native
             StringBuilder lpClassName,
             int nMaxCount);
 
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern int SetWindowPos(
+            IntPtr hWnd,
+            IntPtr hWndInsertAfter,
+            int x,
+            int y,
+            int cx,
+            int cy,
+            SetWindowPosFlags uFlags
+        );
+
         [DllImport("user32.dll")]
-        private static extern int GetSystemMetrics(int nIndex);
+        private static extern bool GetWindowRect(
+            IntPtr hwnd,
+            ref RECT rectangle);
 
         internal static long GetUserIdleTime()
         {
@@ -42,7 +58,30 @@ namespace Kirei.Infrastructure.Native
             return className.ToString();
         }
 
-        internal static int GetMonitorCount() =>
-            GetSystemMetrics(80);
+        internal static int SetWindowPos(
+            IntPtr hWnd,
+            RECT rect,
+            SetWindowPosFlags uFlags)
+        {
+            var cx = rect.Right - rect.Left;
+            var cy = rect.Bottom - rect.Top;
+
+            return SetWindowPos(
+                hWnd,
+                IntPtr.Zero, 
+                rect.Left, 
+                rect.Top,
+                cx,
+                cy,
+                uFlags);
+        }
+
+        internal static RECT GetWindowRect(IntPtr hWnd)
+        {
+            var rect = new RECT();
+            GetWindowRect(hWnd, ref rect);
+
+            return rect;
+        }
     }
 }

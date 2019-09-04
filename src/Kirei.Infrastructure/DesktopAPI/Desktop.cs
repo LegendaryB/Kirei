@@ -30,8 +30,12 @@ namespace Kirei.Infrastructure.DesktopAPI
 
         public void ToggleTaskBar()
         {
+            if (taskBarHidden)
+                _taskBar.Show();
+            else
+                _taskBar.Hide();
+
             taskBarHidden = !taskBarHidden;
-            _taskBar.SetAutoHide(taskBarHidden);
         }
 
         public void ToggleIcons()

@@ -2,5 +2,6 @@
 {
     public interface IHibernationService
     {
+        void PreventSleep();
     }
 }

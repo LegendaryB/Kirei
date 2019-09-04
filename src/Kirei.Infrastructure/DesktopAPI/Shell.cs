@@ -1,5 +1,5 @@
 ﻿using Kirei.Infrastructure.Native;
-using Kirei.Infrastructure.Native.Enums;
+using Kirei.Domain.Native.Enums;
 
 using System;
 

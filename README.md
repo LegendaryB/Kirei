@@ -26,7 +26,7 @@ The `appsettings.json` file resides in the same folder as the application.
     "InputPollingRate": 0
   },
   "Actions": {
-    "PreventSleep": true
+    "PreventSleep": true,
     "HideDesktopIcons": true,
     "HideTaskBar": true,
     "HideApplicationWindows": true

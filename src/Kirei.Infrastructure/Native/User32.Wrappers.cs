@@ -1,5 +1,5 @@
-﻿using Kirei.Infrastructure.Native.Enums;
-using Kirei.Infrastructure.Native.Structures;
+﻿using Kirei.Domain.Native.Enums;
+using Kirei.Domain.Native.Structures;
 
 using System;
 using System.Runtime.InteropServices;

@@ -1,6 +1,6 @@
-﻿namespace Kirei.Infrastructure.Native.Structures
+﻿namespace Kirei.Domain.Native.Structures
 {
-    internal struct RECT
+    public struct RECT
     {
         public int Left { get; set; }
         public int Top { get; set; }

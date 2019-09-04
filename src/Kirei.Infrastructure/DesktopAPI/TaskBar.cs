@@ -1,6 +1,7 @@
 ﻿using Kirei.Infrastructure.Native;
-using Kirei.Infrastructure.Native.Enums;
-using Kirei.Infrastructure.Native.Structures;
+using Kirei.Domain.Native.Enums;
+using Kirei.Domain.Native.Structures;
+using Kirei.Domain.DesktopAPI;
 
 using System;
 using System.Collections.Generic;

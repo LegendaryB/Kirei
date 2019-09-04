@@ -1,4 +1,5 @@
 ﻿using Kirei.Application.Configuration;
+using Kirei.Domain.Configuration;
 
 using Microsoft.Extensions.Configuration;
 

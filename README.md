@@ -35,8 +35,8 @@ The `appsettings.json` file resides in the same folder as the application.
 
 |Property   |Description   |Default value   |
 |---|---|---|
-|InactiveAfter   |Time period after which the actions are executed in seconds.   |180s (3 minutes)|
-|InputPollingRate   |Polling rate for the input handler in milliseconds.   |200ms|
+|InactiveAfter   |Time period after which the actions are executed in seconds.   |180 Seconds|
+|InputPollingRate   |Polling rate for the input handler in milliseconds.   |200 Milliseconds|
 
 ## Use the application
 1. Extract the folder and go into it.

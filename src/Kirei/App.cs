@@ -1,21 +1,18 @@
 ﻿using Kirei.Application;
-using Kirei.Application.Configuration;
+using Kirei.Infrastructure.Configuration;
 
 namespace Kirei
 {
     internal class App
     {
-        private readonly IAppConfigurationProvider _appConfigurationProvider;
         private readonly IInstallWizard _installWizard;
         private readonly IDesktop _desktopAPI;
         private readonly IInputHandler _inputHandler;
 
-        public App(IAppConfigurationProvider appConfigurationProvider,
-            IInstallWizard installWizard,
+        public App(IInstallWizard installWizard,
             IDesktop desktopAPI,
             IInputHandler inputHandler)
         {
-            _appConfigurationProvider = appConfigurationProvider;
             _installWizard = installWizard;
             _desktopAPI = desktopAPI;
             _inputHandler = inputHandler;
@@ -23,7 +20,7 @@ namespace Kirei
 
         internal void Run()
         {
-            if (_appConfigurationProvider.Configuration.RunOnStartup)
+            if (AppConfigurationProvider.Configuration.RunOnStartup)
                 _installWizard.RunOnStartup();
 
             _inputHandler.Handler = OnUserActiveOrInactive;
@@ -32,13 +29,13 @@ namespace Kirei
 
         private void OnUserActiveOrInactive()
         {
-            if (_appConfigurationProvider.Configuration.HideDesktopIcons)
+            if (AppConfigurationProvider.Configuration.HideDesktopIcons)
                 _desktopAPI.ToggleIcons();
 
-            if (_appConfigurationProvider.Configuration.SetAutoHideTaskBar)
+            if (AppConfigurationProvider.Configuration.SetAutoHideTaskBar)
                 _desktopAPI.ToggleTaskBar();
 
-            if (_appConfigurationProvider.Configuration.MinimizeAllApplications)
+            if (AppConfigurationProvider.Configuration.MinimizeAllApplications)
                 _desktopAPI.ToggleWindows();
         }
     }

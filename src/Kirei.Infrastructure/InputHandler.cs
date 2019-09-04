@@ -1,5 +1,5 @@
 ﻿using Kirei.Application;
-using Kirei.Application.Configuration;
+using Kirei.Infrastructure.Configuration;
 using Kirei.Infrastructure.Native;
 
 using System;
@@ -10,17 +10,9 @@ namespace Kirei.Infrastructure
     public class InputHandler :
         IInputHandler
     {
-        private readonly IAppConfigurationProvider _appConfigurationProvider;
-
         private bool hasIconsBeenHidden = false;
 
         public Action Handler { get; set; }
-        public bool IgnoreNextMessage { get; set; }
-
-        public InputHandler(IAppConfigurationProvider appConfigurationProvider)
-        {
-            _appConfigurationProvider = appConfigurationProvider;
-        }
 
         public void Handle()
         {
@@ -28,12 +20,12 @@ namespace Kirei.Infrastructure
             {
                 var lastInputInMilliseconds = User32.GetUserIdleTime();
 
-                if (lastInputInMilliseconds >= _appConfigurationProvider.Configuration.InactiveStateInMilliseconds && !hasIconsBeenHidden)
+                if (lastInputInMilliseconds >= AppConfigurationProvider.Configuration.InactiveStateInMilliseconds && !hasIconsBeenHidden)
                 {
                     Handler?.Invoke();
                     hasIconsBeenHidden = true;
                 }
-                else if (lastInputInMilliseconds < _appConfigurationProvider.Configuration.InactiveStateInMilliseconds && hasIconsBeenHidden)
+                else if (lastInputInMilliseconds < AppConfigurationProvider.Configuration.InactiveStateInMilliseconds && hasIconsBeenHidden)
                 {
                     Handler?.Invoke();
                     hasIconsBeenHidden = false;

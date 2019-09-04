@@ -1,43 +1,35 @@
 ﻿using Kirei.Application.Configuration;
 using Kirei.Domain.Configuration;
-using MediatR;
+
 using Microsoft.Extensions.Configuration;
 
 using System;
 using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Kirei.Infrastructure.Configuration
 {
-    public class AppConfigurationProvider :
-        AsyncRequestHandler<AppConfigurationFileChanged>,
-        IAppConfigurationProvider
+    public static class AppConfigurationProvider
     {
-        public IAppConfiguration Configuration { get; private set; }
+        public static IAppConfiguration Configuration { get; private set; }
 
         private const string SETTINGS_FILE = "appsettings.json";
 
-        private readonly string _basePath;
-        private readonly IAppConfigurationFileWatcher _fileWatcher;
-        private readonly object _configurationLock;
+        private static readonly string _basePath;
+        private static readonly AppConfigurationFileWatcher _fileWatcher;
 
-        public AppConfigurationProvider(IAppConfigurationFileWatcher fileWatcher)
+        static AppConfigurationProvider()
         {
             _basePath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
-            _fileWatcher = fileWatcher;
-            _configurationLock = new object();
+
+            _fileWatcher = new AppConfigurationFileWatcher(() =>
+            {
+                Load(false);
+            });
 
             Load();
         }
 
-        protected override Task Handle(AppConfigurationFileChanged request, CancellationToken cancellationToken)
-        {
-            Load();
-            return Task.CompletedTask;
-        }
-
-        private void Load()
+        private static void Load(bool attachFileWatcher = true)
         {
             var builder = new ConfigurationBuilder()
                    .SetBasePath(_basePath)
@@ -52,19 +44,12 @@ namespace Kirei.Infrastructure.Configuration
 
             appConfiguration.InactiveStateInMilliseconds = appConfiguration.InactiveStateInSeconds * 1000;
 
-            _fileWatcher.WatchForChanges(
-                SETTINGS_FILE,
-                _basePath);
+            Configuration = appConfiguration;
 
-            lock (_configurationLock)
-            {
-                Configuration = appConfiguration;
-            }
-        }
-
-        public void Dispose()
-        {
-            _fileWatcher.Dispose();
+            if (attachFileWatcher)
+                _fileWatcher.WatchForChanges(
+                    SETTINGS_FILE,
+                    _basePath);
         }
     }
 }

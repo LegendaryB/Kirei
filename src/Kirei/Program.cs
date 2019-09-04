@@ -1,11 +1,8 @@
 ﻿using Kirei.Application;
-using Kirei.Application.Configuration;
 using Kirei.Infrastructure;
 using Kirei.Infrastructure.DesktopAPI;
-using Kirei.Infrastructure.Configuration;
 
 using Microsoft.Extensions.DependencyInjection;
-using MediatR;
 
 namespace Kirei
 {
@@ -22,9 +19,6 @@ namespace Kirei
         private static ServiceProvider ConfigureServices()
         {
             return new ServiceCollection()
-                .AddMediatR(typeof(AppConfigurationProvider))
-                .AddSingleton<IAppConfigurationFileWatcher, AppConfigurationFileWatcher>()
-                .AddSingleton<IAppConfigurationProvider, AppConfigurationProvider>()
                 .AddSingleton<IInstallWizard, InstallWizard>()
                 .AddSingleton<IDesktop, Desktop>()
                 .AddSingleton<IInputHandler, InputHandler>()

@@ -1,20 +1,17 @@
-﻿using Kirei.Application.Configuration;
-using Kirei.Domain.Configuration;
-using MediatR;
+﻿using System;
 using System.IO;
 
 namespace Kirei.Infrastructure.Configuration
 {
-    public class AppConfigurationFileWatcher :
-        IAppConfigurationFileWatcher
+    internal class AppConfigurationFileWatcher
     {
-        private readonly IMediator _mediator;
         private readonly FileSystemWatcher _fileWatcher;
+        private readonly Action _onFileChangedCallback;
 
-        public AppConfigurationFileWatcher(IMediator mediator)
+        public AppConfigurationFileWatcher(Action onFileChangedCallback)
         {
-            _mediator = mediator;
             _fileWatcher = new FileSystemWatcher();
+            _onFileChangedCallback = onFileChangedCallback;
         }
 
         public void WatchForChanges(
@@ -30,10 +27,8 @@ namespace Kirei.Infrastructure.Configuration
             _fileWatcher.EnableRaisingEvents = true;
         }
 
-        private async void OnAppConfigurationFileChanged(object sender, FileSystemEventArgs e)
-        {
-            await _mediator.Send(new AppConfigurationFileChanged());
-        }
+        private void OnAppConfigurationFileChanged(object sender, FileSystemEventArgs e) =>
+            _onFileChangedCallback?.Invoke();
 
         public void Dispose()
         {

@@ -1,4 +1,5 @@
 ﻿using Kirei.Infrastructure.Native;
+using Kirei.Infrastructure.Native.Enums;
 
 using System;
 
@@ -12,8 +13,7 @@ namespace Kirei.Infrastructure.DesktopAPI
 
         private readonly dynamic _shell;
         private readonly IntPtr _shellDefViewHandle;
-
-        
+        private readonly IntPtr _toggleDesktopIconsCmd = new IntPtr(0x7402);
 
         internal Shell()
         {
@@ -22,9 +22,17 @@ namespace Kirei.Infrastructure.DesktopAPI
         }
 
         internal void MinimizeWindows() => _shell.MinimizeAll();
+
         internal void UndoMinimizeWindows() => _shell.UndoMinimizeALL();
-        internal void ShowDesktopIcons() => User32.ShowWindow(_shellDefViewHandle, 1);
-        internal void HideDesktopIcons() => User32.ShowWindow(_shellDefViewHandle, 0);
+
+        internal void ToggleDesktopIcons()
+        {
+            User32.SendMessage(
+                _shellDefViewHandle,
+                WindowsMessages.WM_COMMAND,
+                _toggleDesktopIconsCmd,
+                IntPtr.Zero);
+        }
 
         private dynamic CreateShellCOMInstance()
         {

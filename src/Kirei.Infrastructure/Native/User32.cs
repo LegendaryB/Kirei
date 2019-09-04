@@ -1,5 +1,4 @@
 ﻿using Kirei.Infrastructure.Native.Enums;
-using Kirei.Infrastructure.Native.Structures;
 
 using System;
 using System.Runtime.InteropServices;
@@ -34,5 +33,10 @@ namespace Kirei.Infrastructure.Native
         internal static extern bool EnumWindows(
             EnumWindowProc callDelegate, 
             IntPtr lParam);
+
+        [DllImport("user32.dll")]
+        internal static extern bool ShowWindow(
+            IntPtr hWnd, 
+            int nCmdShow);
     }
 }

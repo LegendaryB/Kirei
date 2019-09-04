@@ -2,11 +2,7 @@
 {
     public interface IAppConfiguration
     {
-        bool RunOnStartup { get; set; }
-        bool HideDesktopIcons { get; set; }
-        bool SetAutoHideTaskBar { get; set; }
-        bool MinimizeAllApplications { get; set; }
-        long InactiveStateInMilliseconds { get; set; }
-        int InactiveStateInSeconds { get; set; }
+        IApplicationSection Application { get; set; }
+        IActionsSection Actions { get; set; }
     }
 }

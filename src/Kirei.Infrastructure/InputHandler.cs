@@ -19,13 +19,14 @@ namespace Kirei.Infrastructure
             while (true)
             {
                 var lastInputInMilliseconds = User32.GetUserIdleTime();
+                var inactiveAfterMs = ConfigurationProvider.Configuration.Application.InactiveAfterMs;
 
-                if (lastInputInMilliseconds >= AppConfigurationProvider.Configuration.InactiveStateInMilliseconds && !hasIconsBeenHidden)
+                if (lastInputInMilliseconds >= inactiveAfterMs && !hasIconsBeenHidden)
                 {
                     Handler?.Invoke();
                     hasIconsBeenHidden = true;
                 }
-                else if (lastInputInMilliseconds < AppConfigurationProvider.Configuration.InactiveStateInMilliseconds && hasIconsBeenHidden)
+                else if (lastInputInMilliseconds < inactiveAfterMs && hasIconsBeenHidden)
                 {
                     Handler?.Invoke();
                     hasIconsBeenHidden = false;

@@ -3,12 +3,12 @@ using System.IO;
 
 namespace Kirei.Infrastructure.Configuration
 {
-    internal class AppConfigurationFileWatcher
+    internal class ConfigurationFileWatcher
     {
         private readonly FileSystemWatcher _fileWatcher;
         private readonly Action _onFileChangedCallback;
 
-        public AppConfigurationFileWatcher(Action onFileChangedCallback)
+        public ConfigurationFileWatcher(Action onFileChangedCallback)
         {
             _fileWatcher = new FileSystemWatcher();
             _onFileChangedCallback = onFileChangedCallback;

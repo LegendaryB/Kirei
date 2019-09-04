@@ -20,7 +20,7 @@ namespace Kirei
 
         internal void Run()
         {
-            if (AppConfigurationProvider.Configuration.RunOnStartup)
+            if (ConfigurationProvider.Configuration.Application.ShouldRunOnStartup)
                 _installWizard.RunOnStartup();
 
             _inputHandler.Handler = OnUserActiveOrInactive;
@@ -29,13 +29,13 @@ namespace Kirei
 
         private void OnUserActiveOrInactive()
         {
-            if (AppConfigurationProvider.Configuration.HideDesktopIcons)
+            if (ConfigurationProvider.Configuration.Actions.HideDesktopIcons)
                 _desktopAPI.ToggleIcons();
 
-            if (AppConfigurationProvider.Configuration.SetAutoHideTaskBar)
+            if (ConfigurationProvider.Configuration.Actions.HideTaskBar)
                 _desktopAPI.ToggleTaskBar();
 
-            if (AppConfigurationProvider.Configuration.MinimizeAllApplications)
+            if (ConfigurationProvider.Configuration.Actions.HideApplicationWindows)
                 _desktopAPI.ToggleWindows();
         }
     }

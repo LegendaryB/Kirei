@@ -1,12 +1,8 @@
 ﻿using Kirei.Application;
-using Kirei.Application.Configuration;
-using Kirei.Configuration;
 using Kirei.Infrastructure;
 using Kirei.Infrastructure.DesktopAPI;
 
 using Microsoft.Extensions.DependencyInjection;
-
-using System;
 
 namespace Kirei
 {
@@ -14,19 +10,15 @@ namespace Kirei
     {
         public static void Main()
         {
-            var appConfiguration = AppConfigurationProvider
-                .Load();
-
-            var serviceProvider = ConfigureServices(appConfiguration);
+            var serviceProvider = ConfigureServices();
 
             var app = serviceProvider.GetService<App>();
             app.Run();
         }
 
-        private static ServiceProvider ConfigureServices(IAppConfiguration appConfiguration)
+        private static ServiceProvider ConfigureServices()
         {
             return new ServiceCollection()
-                .AddSingleton(appConfiguration)
                 .AddSingleton<IInstallWizard, InstallWizard>()
                 .AddSingleton<IDesktop, Desktop>()
                 .AddSingleton<IInputHandler, InputHandler>()

@@ -6,15 +6,34 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
 
-namespace Kirei.Configuration
+namespace Kirei.Infrastructure.Configuration
 {
     public static class AppConfigurationProvider
     {
-        public static IAppConfiguration Load()
+        public static IAppConfiguration Configuration { get; private set; }
+
+        private const string SETTINGS_FILE = "appsettings.json";
+
+        private static readonly string _basePath;
+        private static readonly AppConfigurationFileWatcher _fileWatcher;
+
+        static AppConfigurationProvider()
+        {
+            _basePath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+
+            _fileWatcher = new AppConfigurationFileWatcher(() =>
+            {
+                Load(false);
+            });
+
+            Load();
+        }
+
+        private static void Load(bool attachFileWatcher = true)
         {
             var builder = new ConfigurationBuilder()
-                   .SetBasePath(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory))
-                   .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+                   .SetBasePath(_basePath)
+                   .AddJsonFile(SETTINGS_FILE, false);
 
             var configuration = builder.Build();
 
@@ -25,7 +44,12 @@ namespace Kirei.Configuration
 
             appConfiguration.InactiveStateInMilliseconds = appConfiguration.InactiveStateInSeconds * 1000;
 
-            return appConfiguration;
+            Configuration = appConfiguration;
+
+            if (attachFileWatcher)
+                _fileWatcher.WatchForChanges(
+                    SETTINGS_FILE,
+                    _basePath);
         }
     }
 }

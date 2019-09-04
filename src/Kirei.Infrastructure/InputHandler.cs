@@ -32,7 +32,7 @@ namespace Kirei.Infrastructure
                     hasIconsBeenHidden = false;
                 }
 
-                Thread.Sleep(200);
+                Thread.Sleep(ConfigurationProvider.Configuration.Application.InputPollingRate);
             }
         }
     }

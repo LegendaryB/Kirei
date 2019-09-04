@@ -1,8 +1,6 @@
-﻿using Kirei.Application.Configuration;
-
-namespace Kirei.Domain.Configuration
+﻿namespace Kirei.Domain.Configuration
 {
-    public class ActionsSection : IActionsSection
+    public class ActionsSection
     {
         public bool HideDesktopIcons { get; set; }
         public bool HideTaskBar { get; set; }

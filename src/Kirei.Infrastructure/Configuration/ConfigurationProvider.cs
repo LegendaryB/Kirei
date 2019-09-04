@@ -1,5 +1,4 @@
-﻿using Kirei.Application.Configuration;
-using Kirei.Domain.Configuration;
+﻿using Kirei.Domain.Configuration;
 
 using Microsoft.Extensions.Configuration;
 
@@ -10,7 +9,7 @@ namespace Kirei.Infrastructure.Configuration
 {
     public static class ConfigurationProvider
     {
-        public static IAppConfiguration Configuration { get; private set; }
+        public static AppConfiguration Configuration { get; private set; }
 
         private const string SETTINGS_FILE = "appsettings.json";
 
@@ -43,6 +42,9 @@ namespace Kirei.Infrastructure.Configuration
                 appConfiguration.Application.InactiveAfter == 0 ? 180 : appConfiguration.Application.InactiveAfter;
 
             appConfiguration.Application.InactiveAfterMs = appConfiguration.Application.InactiveAfter * 1000;
+
+            appConfiguration.Application.InputPollingRate =
+                appConfiguration.Application.InputPollingRate == 0 ? 200 : appConfiguration.Application.InputPollingRate;
 
             Configuration = appConfiguration;
 

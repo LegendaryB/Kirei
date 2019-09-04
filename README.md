@@ -17,11 +17,21 @@ Kirei is a japanese word and means clean or neat.
 </div><br>
 
 ## Configuration
-The configuration resides in the same folder as the application. There is a file called `appsettings.json`. In this file you can configure the following:
-* Should the application be executed at startup?
-* Should the desktop icons be hidden after the time period?
-* Should the taskbar be set to auto hide after the time period?
-* The time period in seconds.
+The configuration resides in the same folder as the application. There is a file called `appsettings.json`.
+```json
+{
+  "Application": {
+    "ShouldRunOnStartup": true,
+    "InactiveAfter": 0, // time period after which the actions are executed in seconds. default: 180s (3m)
+    "InputPollingRate": 0 // polling rate for the input handler in milliseconds. default: 200ms
+  },
+  "Actions": {
+    "HideDesktopIcons": true,
+    "HideTaskBar": true,
+    "HideApplicationWindows": true
+  }  
+}
+```
 
 ## Use the application
 1. Extract the folder and go into it.

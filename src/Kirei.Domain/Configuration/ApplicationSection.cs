@@ -1,14 +1,10 @@
-﻿using Kirei.Application.Configuration;
-
-namespace Kirei.Domain.Configuration
+﻿namespace Kirei.Domain.Configuration
 {
-    public class ApplicationSection : IApplicationSection
+    public class ApplicationSection
     {
         public bool ShouldRunOnStartup { get; set; }
         public long InactiveAfter { get; set; }
         public long InactiveAfterMs { get; set; }
-
-        // ms
-        public long InputPollingRate { get; set; }
+        public int InputPollingRate { get; set; }
     }
 }

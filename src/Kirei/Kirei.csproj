@@ -55,6 +55,10 @@
       <Project>{5AA723DC-8CDC-457C-AF98-F5618D220CC4}</Project>
       <Name>Kirei.Application</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Kirei.Domain\Kirei.Domain.csproj">
+      <Project>{A43A39B9-1DC1-4D0C-A572-A1E9B78AB876}</Project>
+      <Name>Kirei.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Kirei.Infrastructure\Kirei.Infrastructure.csproj">
       <Project>{27945DCF-83BE-4CEA-B7AE-0569D5416758}</Project>
       <Name>Kirei.Infrastructure</Name>

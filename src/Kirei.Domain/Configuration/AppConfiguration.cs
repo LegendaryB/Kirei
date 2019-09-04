@@ -1,10 +1,8 @@
-﻿using Kirei.Application.Configuration;
-
-namespace Kirei.Domain.Configuration
+﻿namespace Kirei.Domain.Configuration
 {
-    public class AppConfiguration : IAppConfiguration
+    public class AppConfiguration
     {
-        public IApplicationSection Application { get; set; }
-        public IActionsSection Actions { get; set; }
+        public ApplicationSection Application { get; set; }
+        public ActionsSection Actions { get; set; }
     }
 }

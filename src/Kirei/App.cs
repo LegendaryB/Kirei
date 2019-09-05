@@ -48,9 +48,8 @@ namespace Kirei
                 _desktopService.ToggleWindows,
                 () => cfg.HideApplicationWindows);
 
-            _inputActionMapper.RegisterAction(
-                _hibernationService.PreventSleep,
-                () => cfg.PreventSleep);
+            if (cfg.PreventSleep)
+                _hibernationService.PreventSleep();
 
             _inputListener.Listen(_inputActionMapper);
         }

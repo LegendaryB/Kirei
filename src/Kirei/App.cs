@@ -1,21 +1,30 @@
 ﻿using Kirei.Application;
+using Kirei.Application.System;
+using Kirei.Application.System.Desktop;
+using Kirei.Application.System.Input;
 using Kirei.Infrastructure.Configuration;
 
 namespace Kirei
 {
     internal class App
     {
-        private readonly IInstallWizard _installWizard;
-        private readonly IDesktop _desktopAPI;
-        private readonly IInputHandler _inputHandler;
+        private readonly IInstallWizard _installWizard;        
+        private readonly IInputListener _inputListener;
+        private readonly IInputActionMapper _inputActionMapper;
+        private readonly IDesktopService _desktopService;
+        private readonly IHibernationService _hibernationService;
 
         public App(IInstallWizard installWizard,
-            IDesktop desktopAPI,
-            IInputHandler inputHandler)
+            IInputListener inputListener,
+            IInputActionMapper inputActionMapper,
+            IDesktopService desktopService,
+            IHibernationService hibernationService)
         {
-            _installWizard = installWizard;
-            _desktopAPI = desktopAPI;
-            _inputHandler = inputHandler;
+            _installWizard = installWizard;            
+            _inputListener = inputListener;
+            _inputActionMapper = inputActionMapper;
+            _desktopService = desktopService;
+            _hibernationService = hibernationService;
         }
 
         internal void Run()
@@ -23,20 +32,26 @@ namespace Kirei
             if (ConfigurationProvider.Configuration.Application.ShouldRunOnStartup)
                 _installWizard.RunOnStartup();
 
-            _inputHandler.Handler = OnUserActiveOrInactive;
-            _inputHandler.Handle();
-        }
+            var cfg = ConfigurationProvider
+                .Configuration
+                .Actions;
 
-        private void OnUserActiveOrInactive()
-        {
-            if (ConfigurationProvider.Configuration.Actions.HideDesktopIcons)
-                _desktopAPI.ToggleIcons();
+            _inputActionMapper.RegisterAction(
+                _desktopService.ToggleIcons, 
+                () => cfg.HideDesktopIcons);
 
-            if (ConfigurationProvider.Configuration.Actions.HideTaskBar)
-                _desktopAPI.ToggleTaskBar();
+            _inputActionMapper.RegisterAction(
+                _desktopService.ToggleTaskBar,
+                () => cfg.HideTaskBar);
 
-            if (ConfigurationProvider.Configuration.Actions.HideApplicationWindows)
-                _desktopAPI.ToggleWindows();
+            _inputActionMapper.RegisterAction(
+                _desktopService.ToggleWindows,
+                () => cfg.HideApplicationWindows);
+
+            if (cfg.PreventSleep)
+                _hibernationService.PreventSleep();
+
+            _inputListener.Listen(_inputActionMapper);
         }
     }
 }

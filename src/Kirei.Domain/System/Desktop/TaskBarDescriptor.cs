@@ -2,7 +2,7 @@
 
 using System;
 
-namespace Kirei.Domain.DesktopAPI
+namespace Kirei.Domain.System.Desktop
 {
     public class TaskBarDescriptor
     {

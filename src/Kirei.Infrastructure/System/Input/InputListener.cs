@@ -1,11 +1,9 @@
 ﻿using Kirei.Application.System.Input;
 using Kirei.Infrastructure.Configuration;
-using Kirei.Infrastructure.Native;
 
 using NeatInput;
 
 using System;
-using System.Diagnostics;
 using System.Threading;
 
 namespace Kirei.Infrastructure.System.Input
@@ -28,12 +26,12 @@ namespace Kirei.Infrastructure.System.Input
 
             _inputProvider.InputReceived += OnInputReceived;
 
+            var inactiveAfterMs = ConfigurationProvider.Configuration.Application.InactiveAfterMs;
+            var inputPollingRateMs = ConfigurationProvider.Configuration.Application.InputPollingRate;
+
             while (true)
             {
-                var lastInputInMilliseconds = DateTime.Now.Subtract(lastInputReceivedAt).TotalMilliseconds;
-                var inactiveAfterMs = ConfigurationProvider.Configuration.Application.InactiveAfterMs;
-
-                Debug.WriteLine(lastInputInMilliseconds);
+                var lastInputInMilliseconds = DateTime.Now.Subtract(lastInputReceivedAt).TotalMilliseconds;                
 
                 if (lastInputInMilliseconds >= inactiveAfterMs && !hasIconsBeenHidden)
                 {
@@ -46,13 +44,12 @@ namespace Kirei.Infrastructure.System.Input
                     hasIconsBeenHidden = false;
                 }                
 
-                Thread.Sleep(ConfigurationProvider.Configuration.Application.InputPollingRate);
+                Thread.Sleep(inputPollingRateMs);
             }
         }
 
         private void OnInputReceived(NeatInput.Domain.Hooking.Input input)
         {
-            Debug.WriteLine("INPUT");
             lastInputReceivedAt = DateTime.Now;
         }
     }

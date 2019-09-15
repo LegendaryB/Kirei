@@ -1,11 +1,11 @@
 ﻿using Kirei.Application;
 using Kirei.Application.System;
 using Kirei.Application.System.Desktop;
-using Kirei.Application.System.Input;
+using Kirei.Application.System.InputProcessing;
 using Kirei.Infrastructure;
 using Kirei.Infrastructure.System;
 using Kirei.Infrastructure.System.Desktop;
-using Kirei.Infrastructure.System.Input;
+using Kirei.Infrastructure.System.InputProcessing;
 
 using Microsoft.Extensions.DependencyInjection;
 

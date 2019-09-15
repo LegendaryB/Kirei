@@ -1,7 +1,7 @@
 ﻿using Kirei.Application;
 using Kirei.Application.System;
 using Kirei.Application.System.Desktop;
-using Kirei.Application.System.Input;
+using Kirei.Application.System.InputProcessing;
 using Kirei.Infrastructure.Configuration;
 
 namespace Kirei

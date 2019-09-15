@@ -1,9 +1,9 @@
-﻿using Kirei.Application.System.Input;
+﻿using Kirei.Application.System.InputProcessing;
 
 using System;
 using System.Collections.Generic;
 
-namespace Kirei.Infrastructure.System.Input
+namespace Kirei.Infrastructure.System.InputProcessing
 {
     public class InputActionMapper : IInputActionMapper
     {

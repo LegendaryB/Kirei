@@ -1,12 +1,13 @@
-﻿using Kirei.Application.System.Input;
+﻿using Kirei.Application.System.InputProcessing;
 using Kirei.Infrastructure.Configuration;
 
 using NeatInput;
+using NeatInput.Domain.Processing;
 
 using System;
 using System.Threading;
 
-namespace Kirei.Infrastructure.System.Input
+namespace Kirei.Infrastructure.System.InputProcessing
 {
     public class InputListener :
         IInputListener
@@ -48,7 +49,7 @@ namespace Kirei.Infrastructure.System.Input
             }
         }
 
-        private void OnInputReceived(NeatInput.Domain.Hooking.Input input)
+        private void OnInputReceived(Input input)
         {
             lastInputReceivedAt = DateTime.Now;
         }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Kirei.Application.System.Input
+namespace Kirei.Application.System.InputProcessing
 {
     public interface IInputListener
     {

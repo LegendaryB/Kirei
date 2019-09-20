@@ -50,6 +50,9 @@ __Contributions are always welcome!__
 When you send me a pull request with changes, improvements or bugfixes please make sure to use the pull request template. 
 I want to have all information regarding the pull request at a glance.
 
+## Support
+If you like my software, please consider [supporting me](https://paypal.me/alphadaniel). Thank you for your support! You are great!
+
 ## License
 
 This project is licensed under the MIT license - see the [LICENSE](LICENSE) file for details

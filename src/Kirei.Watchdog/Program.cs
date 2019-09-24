@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CommandLine;
+using System.IO;
 
 namespace Kirei.Watchdog
 {
@@ -10,6 +7,17 @@ namespace Kirei.Watchdog
     {
         static void Main(string[] args)
         {
+            Parser.Default.ParseArguments<WatchdogOptions>(args)
+                .WithParsed(options =>
+                {
+                    if (options.ProcessId == 0)
+                        return;
+
+                    if (string.IsNullOrWhiteSpace(options.AppStateFilePath) || !File.Exists(options.AppStateFilePath))
+                        return;
+
+
+                });
         }
     }
 }

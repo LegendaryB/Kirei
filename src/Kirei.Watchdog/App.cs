@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.IO;
 
 namespace Kirei.Watchdog
 {
@@ -20,6 +21,14 @@ namespace Kirei.Watchdog
             _process.WaitForExit();
 
             // todo dbelz: add logic to restore previous state and restart kirei
+        }
+
+        private void ExecuteApplication()
+        {
+            if (!File.Exists(_appFilePath))
+                return;
+
+            Process.Start(_appFilePath);
         }
     }
 }

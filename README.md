@@ -1,4 +1,6 @@
-﻿﻿﻿<h1 align="center">Kirei</h1><div align="center">
+﻿﻿﻿<img src="logo.png" align="center"/>
+
+<div align="center">
 
 <h4 align="center">Enhance your Wallpaper Engine experience even more!</h4>
 

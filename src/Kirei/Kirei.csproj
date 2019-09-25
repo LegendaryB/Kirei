@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{4E117F91-F6CB-4CA7-9477-20C11EF72446}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>Kirei</RootNamespace>
     <AssemblyName>Kirei</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -54,7 +54,7 @@
     <Compile Include="App.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TrayIcon.cs" />
+    <Compile Include="TrayApp.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Kirei.Application\Kirei.Application.csproj">

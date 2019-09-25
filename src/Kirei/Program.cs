@@ -15,8 +15,9 @@ namespace Kirei
     {
         public static void Main()
         {
-            var icon = new TrayIcon();
-            System.Console.ReadLine();
+            var icon = new TrayApp();
+
+            while (true) { }
 
             //var serviceProvider = ConfigureServices();
 

@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Kirei")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Kirei is a application which hides the desktop icons, the taskbar and windows after the configured time period. It's very useful in combination with Wallpaper Engine.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Daniel Belz")]
 [assembly: AssemblyProduct("Kirei")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyCopyright("Copyright © Daniel Belz 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

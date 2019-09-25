@@ -15,10 +15,13 @@ namespace Kirei
     {
         public static void Main()
         {
-            var serviceProvider = ConfigureServices();
+            var icon = new TrayIcon();
+            System.Console.ReadLine();
 
-            var app = serviceProvider.GetService<App>();
-            app.Run();
+            //var serviceProvider = ConfigureServices();
+
+            //var app = serviceProvider.GetService<App>();
+            //app.Run();
         }
 
         private static ServiceProvider ConfigureServices()

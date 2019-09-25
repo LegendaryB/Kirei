@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace Kirei
@@ -15,9 +10,9 @@ namespace Kirei
         public TrayIcon()
         {
             _notifyIcon = new NotifyIcon();
-            _notifyIcon.Text = "Hello";
+            _notifyIcon.Text = "Kirei";
             _notifyIcon.Visible = true;
-            _notifyIcon.Icon = new Icon("kirei.ico", 256, 256);
+            _notifyIcon.Icon = new Icon("kirei.ico");
         }
     }
 }

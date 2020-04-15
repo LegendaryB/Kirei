@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace Kirei
 {
     class Program
     {
-        static void Main(string[] args)
+        public static async Task Main()
         {
             Console.WriteLine("Hello World!");
         }

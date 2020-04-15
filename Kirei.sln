@@ -3,12 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29001.49
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kirei.Infrastructure", "src\Kirei.Infrastructure\Kirei.Infrastructure.csproj", "{27945DCF-83BE-4CEA-B7AE-0569D5416758}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kirei.Domain", "src\Kirei.Domain\Kirei.Domain.csproj", "{A43A39B9-1DC1-4D0C-A572-A1E9B78AB876}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kirei.Application", "src\Kirei.Application\Kirei.Application.csproj", "{5AA723DC-8CDC-457C-AF98-F5618D220CC4}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9FF7670D-D797-46FD-8406-E9F2BBE974E7}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
@@ -22,18 +16,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{27945DCF-83BE-4CEA-B7AE-0569D5416758}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{27945DCF-83BE-4CEA-B7AE-0569D5416758}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{27945DCF-83BE-4CEA-B7AE-0569D5416758}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{27945DCF-83BE-4CEA-B7AE-0569D5416758}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A43A39B9-1DC1-4D0C-A572-A1E9B78AB876}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A43A39B9-1DC1-4D0C-A572-A1E9B78AB876}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A43A39B9-1DC1-4D0C-A572-A1E9B78AB876}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A43A39B9-1DC1-4D0C-A572-A1E9B78AB876}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5AA723DC-8CDC-457C-AF98-F5618D220CC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5AA723DC-8CDC-457C-AF98-F5618D220CC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5AA723DC-8CDC-457C-AF98-F5618D220CC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5AA723DC-8CDC-457C-AF98-F5618D220CC4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4E117F91-F6CB-4CA7-9477-20C11EF72446}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4E117F91-F6CB-4CA7-9477-20C11EF72446}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E117F91-F6CB-4CA7-9477-20C11EF72446}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Kirei.Interop.Shell
+internal static partial class Interop
 {
     internal sealed class Shell32 : IDisposable
     {

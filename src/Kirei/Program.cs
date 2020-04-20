@@ -1,6 +1,4 @@
-﻿using Kirei.Interop.Shell;
-
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using System.IO;
@@ -12,10 +10,43 @@ namespace Kirei
     {
         public static async Task Main()
         {
-            var services = ConfigureServices();
-            var serviceProvider = services.BuildServiceProvider();
+            var taskbar = new TaskbarManager();
+            taskbar.Hide();
 
-            await serviceProvider.GetService<App>().RunAsync();
+            await Task.Delay(5000);
+
+            taskbar.Show();
+
+            //var x = User32.GetShellWindow();
+            //var name = User32.GetClassName(x);
+
+            //var y = User32.FindWindowEx(
+            //    x,
+            //    IntPtr.Zero,
+            //    "SHELLDLL_DefView",
+            //    string.Empty);
+
+            //var z = User32.FindWindowEx(
+            //    y,
+            //    IntPtr.Zero,
+            //    "SysListView32",
+            //    "FolderView");
+
+            //User32.ShowWindow(
+            //    z,
+            //    User32.SW.RESTORE);
+
+            // var z = User32.GetClassName(y);
+
+            //var taskbar = new Taskbar();
+            //taskbar.Hide();
+            //await Task.Delay(15000);
+            //taskbar.Show();
+
+            //var services = ConfigureServices();
+            //var serviceProvider = services.BuildServiceProvider();
+
+            //await serviceProvider.GetService<App>().RunAsync();
         }
 
         private static IServiceCollection ConfigureServices()

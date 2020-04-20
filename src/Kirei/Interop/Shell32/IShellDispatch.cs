@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Kirei.Interop.Shell
+internal static partial class Interop
 {
     [ComImport]
     [Guid("D8F015C0-C278-11CE-A49E-444553540000")]

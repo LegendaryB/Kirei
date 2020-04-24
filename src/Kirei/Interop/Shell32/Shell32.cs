@@ -1,44 +1,12 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
 internal static partial class Interop
 {
-    internal sealed class Shell32 : IDisposable
+    internal static class Shell32
     {
-        ShellClass shell;
-        IShellDispatch shellDispatch;
+        private const string DLL_NAME = "shell32.dll";
 
-        public Shell32()
-        {
-            shell = new ShellClass();
-            shellDispatch = (IShellDispatch)shell;
-        }
-
-        public void MinimizeAll()
-        {
-            if (shellDispatch == null)
-                throw new ObjectDisposedException("Shell");
-
-            shellDispatch.MinimizeAll();
-        }
-
-        public void Dispose()
-        {
-            try
-            {
-                if (shellDispatch != null)
-                    Marshal.ReleaseComObject(shellDispatch);
-
-                if (shell != null)
-                    Marshal.ReleaseComObject(shell);
-            }
-
-            finally
-            {
-                shell = null;
-                shellDispatch = null;
-                GC.SuppressFinalize(this);
-            }
-        }
+        [DllImport(DLL_NAME)]
+        internal extern static void SHGetSetSettings(ref SHELLSTATE lpss, SSF dwMask, bool bSet);
     }
 }

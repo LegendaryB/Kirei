@@ -1,8 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
+using System;
 using System.IO;
 using System.Threading.Tasks;
+using static Interop;
 
 namespace Kirei
 {
@@ -10,12 +11,17 @@ namespace Kirei
     {
         public static async Task Main()
         {
-            var taskbar = new TaskbarManager();
-            taskbar.Hide();
+            var manager = new DesktopIconManager();
+            manager.Hide();
+            await Task.Delay(1500);
+            manager.Show();
 
-            await Task.Delay(5000);
+            //var taskbar = new TaskbarManager();
+            //taskbar.Hide();
 
-            taskbar.Show();
+            //await Task.Delay(5000);
+
+            //taskbar.Show();
 
             //var x = User32.GetShellWindow();
             //var name = User32.GetClassName(x);

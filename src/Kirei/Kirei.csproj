@@ -45,16 +45,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="DesktopIconManager.cs" />
     <Compile Include="Interop\Kernel32.cs" />
     <Compile Include="Interop\Shell32\IShellDispatch.cs" />
     <Compile Include="Interop\Shell32\Shell32.cs" />
     <Compile Include="Interop\Shell32\ShellClass.cs" />
+    <Compile Include="Interop\Shell32\ShellClass.ShellDispatch.cs" />
+    <Compile Include="Interop\Shell32\SHELLSTATE.cs" />
+    <Compile Include="Interop\Shell32\SSF.cs" />
     <Compile Include="Interop\User32.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VisualState.cs" />
     <Compile Include="TaskbarManager.cs" />
     <Compile Include="TaskbarManager.Taskbar.cs" />
+    <Compile Include="WindowManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

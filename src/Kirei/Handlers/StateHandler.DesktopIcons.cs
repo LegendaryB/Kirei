@@ -4,21 +4,17 @@ using static Interop;
 
 namespace Kirei
 {
-    internal class DesktopIconManager
+    internal class DesktopIconStateHandler : StateHandler
     {
-        private VisualState _state;
         private readonly IntPtr _shellFolderViewHWnd;
 
-        internal DesktopIconManager()
+        internal DesktopIconStateHandler()
         {
             _shellFolderViewHWnd = GetShellFolderView();
         }
 
-        internal void Show()
+        protected override void OnAppearing()
         {
-            if (_state == VisualState.Visible)
-                return;
-
             User32.ShowWindow(_shellFolderViewHWnd, User32.SW.RESTORE);
 
             var state = new SHELLSTATE();
@@ -28,15 +24,10 @@ namespace Kirei
                 ref state,
                 SSF.HIDEICONS,
                 true);
-
-            _state = VisualState.Visible;
         }
 
-        internal void Hide()
+        protected override void OnDisappearing()
         {
-            if (_state == VisualState.Hidden)
-                return;
-
             User32.ShowWindow(_shellFolderViewHWnd, User32.SW.HIDE);
 
             var state = new SHELLSTATE();
@@ -46,8 +37,6 @@ namespace Kirei
                 ref state,
                 SSF.HIDEICONS,
                 true);
-
-            _state = VisualState.Hidden;
         }
 
         private static IntPtr GetShellFolderView()

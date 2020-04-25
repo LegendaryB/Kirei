@@ -15,44 +15,6 @@ namespace Kirei
             await Task.Delay(5000);
             taskbar.SetVisible();
 
-            //var manager = new DesktopIconStateHandler();
-            //manager.State = VisualState.Hidden;
-            //await Task.Delay(15000);
-            //manager.State = VisualState.Visible;
-
-            //var taskbar = new TaskbarManager();
-            //taskbar.Hide();
-
-            //await Task.Delay(5000);
-
-            //taskbar.Show();
-
-            //var x = User32.GetShellWindow();
-            //var name = User32.GetClassName(x);
-
-            //var y = User32.FindWindowEx(
-            //    x,
-            //    IntPtr.Zero,
-            //    "SHELLDLL_DefView",
-            //    string.Empty);
-
-            //var z = User32.FindWindowEx(
-            //    y,
-            //    IntPtr.Zero,
-            //    "SysListView32",
-            //    "FolderView");
-
-            //User32.ShowWindow(
-            //    z,
-            //    User32.SW.RESTORE);
-
-            // var z = User32.GetClassName(y);
-
-            //var taskbar = new Taskbar();
-            //taskbar.Hide();
-            //await Task.Delay(15000);
-            //taskbar.Show();
-
             //var services = ConfigureServices();
             //var serviceProvider = services.BuildServiceProvider();
 

@@ -1,11 +1,18 @@
-﻿using System;
+﻿using Kirei.Engine;
 using System.Threading.Tasks;
 
 namespace Kirei
 {
-    public class App
+    internal class App
     {
-        public async Task RunAsync()
+        private IStateControllerSupervisor _stateSupervisor;
+
+        public App(IStateControllerSupervisor stateSupervisor)
+        {
+            _stateSupervisor = stateSupervisor;
+        }
+
+        internal async Task RunAsync()
         {
         }
     }

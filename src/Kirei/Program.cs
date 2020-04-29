@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Kirei.Engine;
+
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using System.IO;
@@ -10,15 +12,10 @@ namespace Kirei
     {
         public static async Task Main()
         {
-            var taskbar = new TaskbarStateHandler();
-            taskbar.SetHidden();
-            await Task.Delay(5000);
-            taskbar.SetVisible();
+            var services = ConfigureServices();
+            var serviceProvider = services.BuildServiceProvider();
 
-            //var services = ConfigureServices();
-            //var serviceProvider = services.BuildServiceProvider();
-
-            //await serviceProvider.GetService<App>().RunAsync();
+            await serviceProvider.GetService<App>().RunAsync();
         }
 
         private static IServiceCollection ConfigureServices()
@@ -26,7 +23,9 @@ namespace Kirei
             var services = new ServiceCollection();
 
             var config = LoadConfiguration();
+
             services.AddSingleton(config);
+            services.AddSingleton<IStateControllerSupervisor, StateControllerSupervisor>();
 
             services.AddTransient<App>();
 

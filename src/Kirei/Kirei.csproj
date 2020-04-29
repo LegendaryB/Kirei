@@ -8,10 +8,11 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>Kirei</RootNamespace>
     <AssemblyName>Kirei</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -45,7 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="Handlers\StateHandler.DesktopIcons.cs" />
+    <Compile Include="Engine\DesktopIconController.cs" />
+    <Compile Include="Engine\StateControllerSupervisor.cs" />
     <Compile Include="Interop\Kernel32.cs" />
     <Compile Include="Interop\Shell32\IShellDispatch.cs" />
     <Compile Include="Interop\Shell32\Shell32.cs" />
@@ -56,9 +58,8 @@
     <Compile Include="Interop\User32.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Handlers\StateHandler.cs" />
-    <Compile Include="Handlers\StateHandler.Taskbar.cs" />
-    <Compile Include="Handlers\StateHandler.Window.cs" />
+    <Compile Include="Engine\TaskbarController.cs" />
+    <Compile Include="Engine\WindowController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -66,7 +67,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration">
       <Version>3.1.3</Version>
@@ -77,6 +77,12 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection">
       <Version>3.1.3</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Kirei.Abstractions\Kirei.Abstractions.csproj">
+      <Project>{a6a03330-4704-44f1-bb6b-7990e76afa0e}</Project>
+      <Name>Kirei.Abstractions</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

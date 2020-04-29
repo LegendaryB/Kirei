@@ -2,13 +2,14 @@
 
 using static Interop;
 
-namespace Kirei
+namespace Kirei.Engine
 {
-    internal class DesktopIconStateHandler : StateHandler
+    internal class DesktopIconController : StateControllerBase,
+        IStateController
     {
         private readonly IntPtr _shellFolderViewHWnd;
 
-        internal DesktopIconStateHandler()
+        public DesktopIconController()
         {
             _shellFolderViewHWnd = GetShellFolderView();
         }

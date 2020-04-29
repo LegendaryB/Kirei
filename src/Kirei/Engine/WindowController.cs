@@ -2,23 +2,24 @@
 
 using static Interop;
 
-namespace Kirei
+namespace Kirei.Engine
 {
-    internal sealed class WindowStateHandler : StateHandler,
+    internal sealed class WindowController : StateControllerBase,
+        IStateController,
         IDisposable
     {
         private readonly ShellClass _shell;
 
-        public WindowStateHandler()
+        public WindowController()
         {
             _shell = new ShellClass();
         }
 
         protected override void OnAppearing() =>
-            _shell.MinimizeAll();
+            _shell.UndoMinimizeAll();
 
         protected override void OnDisappearing() =>
-            _shell.UndoMinimizeAll();
+            _shell.MinimizeAll();
 
         public void Dispose()
         {

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 
 using static Interop;
 
-namespace Kirei
+namespace Kirei.Engine
 {
-    internal partial class TaskbarStateHandler : StateHandler
+    internal partial class TaskbarController : StateControllerBase,
+        IStateController
     {   
         private readonly List<IntPtr> _hWndList;
 
-        internal TaskbarStateHandler()
+        public TaskbarController()
         {
             _hWndList = GetTaskbarWindows();
         }

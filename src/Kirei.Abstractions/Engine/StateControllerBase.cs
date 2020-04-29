@@ -1,6 +1,6 @@
-﻿namespace Kirei
+﻿namespace Kirei.Engine
 {   
-    internal abstract class StateHandler
+    public abstract class StateControllerBase
     {
         protected enum VisualState
         {
@@ -14,9 +14,9 @@
         {
             get => _state;
             set
-            {
+            {               
                 _state = value;
-                OnVisualStateChanged();
+                OnVisualStateChanged();                
             }
         }
 

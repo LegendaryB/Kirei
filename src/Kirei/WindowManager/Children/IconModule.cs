@@ -2,19 +2,18 @@
 
 using static Interop;
 
-namespace Kirei.Engine
+namespace Kirei
 {
-    internal class DesktopIconController : StateControllerBase,
-        IStateController
+    internal class IconModule : IWindowManagerChild
     {
         private readonly IntPtr _shellFolderViewHWnd;
 
-        public DesktopIconController()
+        public IconModule()
         {
             _shellFolderViewHWnd = GetShellFolderView();
         }
 
-        protected override void OnAppearing()
+        public void SetVisible()
         {
             User32.ShowWindow(_shellFolderViewHWnd, User32.SW.RESTORE);
 
@@ -27,7 +26,7 @@ namespace Kirei.Engine
                 true);
         }
 
-        protected override void OnDisappearing()
+        public void SetHidden()
         {
             User32.ShowWindow(_shellFolderViewHWnd, User32.SW.HIDE);
 

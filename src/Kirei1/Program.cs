@@ -25,9 +25,9 @@ namespace Kirei
             services.AddSingleton(config);
 
             // WindowManager related modules
-            services.AddSingleton<IWindowManagerChild, IconModule>();
-            services.AddSingleton<IWindowManagerChild, TaskbarModule>();
-            services.AddSingleton<IWindowManagerChild, WindowModule>();
+            services.AddSingleton<IWindowManagerModule, IconModule>();
+            services.AddSingleton<IWindowManagerModule, TaskbarModule>();
+            services.AddSingleton<IWindowManagerModule, WindowModule>();
             services.AddSingleton<IWindowManager, WindowManager>();
 
             services.AddTransient<App>();

@@ -1,6 +1,6 @@
-﻿namespace Kirei.Engine
+﻿namespace Kirei
 {
-    public interface IStateController
+    public interface IWindowManagerChild
     {
         void SetVisible();
         void SetHidden();

@@ -1,19 +1,22 @@
-﻿using Kirei.Engine;
+﻿using System.Runtime.Loader;
 using System.Threading.Tasks;
 
 namespace Kirei
 {
     internal class App
     {
-        private IStateControllerSupervisor _stateSupervisor;
+        private readonly IWindowManager _windowManager;
 
-        public App(IStateControllerSupervisor stateSupervisor)
+        public App(IWindowManager windowManager)
         {
-            _stateSupervisor = stateSupervisor;
+            _windowManager = windowManager;
         }
 
         internal async Task RunAsync()
         {
+            _windowManager.HideChildren();
+            await Task.Delay(5000);
+            _windowManager.ShowChildren();
         }
     }
 }

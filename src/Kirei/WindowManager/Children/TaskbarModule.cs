@@ -3,25 +3,24 @@ using System.Collections.Generic;
 
 using static Interop;
 
-namespace Kirei.Engine
+namespace Kirei
 {
-    internal partial class TaskbarController : StateControllerBase,
-        IStateController
-    {   
+    internal class TaskbarModule : IWindowManagerChild
+    {
         private readonly List<IntPtr> _hWndList;
 
-        public TaskbarController()
+        public TaskbarModule()
         {
             _hWndList = GetTaskbarWindows();
         }
 
-        protected override void OnAppearing()
+        public void SetVisible()
         {
             foreach (var hWnd in _hWndList)
                 User32.ShowWindow(hWnd, User32.SW.RESTORE);
         }
 
-        protected override void OnDisappearing()
+        public void SetHidden()
         {
             foreach (var hWnd in _hWndList)
                 User32.ShowWindow(hWnd, User32.SW.HIDE);
@@ -32,14 +31,14 @@ namespace Kirei.Engine
             var hWndList = new List<IntPtr>();
 
             User32.EnumWindows(
-                (hWnd, _) => EnumWindowsCallback(hWnd, hWndList), 
+                (hWnd, _) => EnumWindowsCallback(hWnd, hWndList),
                 IntPtr.Zero);
 
             return hWndList;
         }
 
         private bool EnumWindowsCallback(
-            IntPtr hWnd, 
+            IntPtr hWnd,
             List<IntPtr> results)
         {
             var lpClassName = User32.GetClassName(hWnd);

@@ -40,6 +40,9 @@ internal static partial class Interop
         [DllImport(DLL_NAME)]
         internal static extern IntPtr GetShellWindow();
 
+        [DllImport(DLL_NAME)]
+        internal static extern IntPtr GetDesktopWindow();
+
         [DllImport(DLL_NAME, CharSet = CharSet.Unicode)]
         internal static extern IntPtr FindWindowEx(
             IntPtr hWndParent,

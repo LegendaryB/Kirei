@@ -1,47 +1,36 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Kirei.Configuration;
+
 using Microsoft.Extensions.DependencyInjection;
 
-using System.IO;
 using System.Threading.Tasks;
 
 namespace Kirei
 {
     class Program
     {
+        private const string SETTINGS_FILE = "appsettings.json";
+
         public static async Task Main()
         {
-            var services = ConfigureServices();
+            var services = await ConfigureServicesAsync();
             var serviceProvider = services.BuildServiceProvider();
 
-            await serviceProvider.GetService<App>().RunAsync();
+            await serviceProvider
+                .GetService<App>()
+                .RunAsync();
         }
 
-        private static IServiceCollection ConfigureServices()
+        private static async Task<IServiceCollection> ConfigureServicesAsync()
         {
             var services = new ServiceCollection();
 
-            var config = LoadConfiguration();
+            var settings = await JsonSerializer.DeserializeAsync<AppSettings>(
+                SETTINGS_FILE);
 
-            services.AddSingleton(config);
-
-            // WindowManager related modules
-            services.AddSingleton<IWindowManagerChild, IconModule>();
-            services.AddSingleton<IWindowManagerChild, TaskbarModule>();
-            services.AddSingleton<IWindowManagerChild, WindowModule>();
-            services.AddSingleton<IWindowManager, WindowManager>();
-
-            services.AddTransient<App>();
+            services.AddSingleton(settings);
+            services.AddSingleton<App>();
 
             return services;
-        }
-
-        private static IConfiguration LoadConfiguration()
-        {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-
-            return builder.Build();
         }
     }
 }

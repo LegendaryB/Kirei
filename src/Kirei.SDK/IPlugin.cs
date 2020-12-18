@@ -3,16 +3,11 @@ using System.Threading.Tasks;
 
 namespace Kirei.SDK
 {
-    public interface IPluginMetadata
-    {
-        string Author { get; }
-        string Name { get; }
-        string Description { get; }
-        string Version { get; }
-    }
-
     public interface IPlugin : IDisposable
     {
+        /// <summary>
+        /// Contains some metadata informations about the plugin. For example the authors name.
+        /// </summary>
         IPluginMetadata Metadata { get; }
 
         /// <summary>

@@ -12,11 +12,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kirei", "src\Kirei\Kirei.cs
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kirei.SDK", "src\Kirei.SDK\Kirei.SDK.csproj", "{337F992C-6235-4228-9895-28E13D4A256B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kirei.TaskbarPlugin", "src\Kirei.TaskbarPlugin\Kirei.TaskbarPlugin.csproj", "{3FF6B4A2-3B9C-4C6D-90C0-6FE7491C420C}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{AE9320EC-FDE2-4A6C-900F-3C1A7970A768}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kirei.WindowPlugin", "src\Kirei.WindowPlugin\Kirei.WindowPlugin.csproj", "{3A354F4E-DE86-481B-BF13-0196DAEE0A9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kirei.TaskbarPlugin", "src\Plugins\Kirei.TaskbarPlugin\Kirei.TaskbarPlugin.csproj", "{2C604273-D411-4283-9E13-DBBD47422B27}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kirei.WindowPlugin", "src\Plugins\Kirei.WindowPlugin\Kirei.WindowPlugin.csproj", "{04BDC226-842C-40E5-87C2-E34D50475C03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,21 +32,21 @@ Global
 		{337F992C-6235-4228-9895-28E13D4A256B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{337F992C-6235-4228-9895-28E13D4A256B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{337F992C-6235-4228-9895-28E13D4A256B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3FF6B4A2-3B9C-4C6D-90C0-6FE7491C420C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3FF6B4A2-3B9C-4C6D-90C0-6FE7491C420C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3FF6B4A2-3B9C-4C6D-90C0-6FE7491C420C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3FF6B4A2-3B9C-4C6D-90C0-6FE7491C420C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3A354F4E-DE86-481B-BF13-0196DAEE0A9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3A354F4E-DE86-481B-BF13-0196DAEE0A9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3A354F4E-DE86-481B-BF13-0196DAEE0A9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3A354F4E-DE86-481B-BF13-0196DAEE0A9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C604273-D411-4283-9E13-DBBD47422B27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C604273-D411-4283-9E13-DBBD47422B27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C604273-D411-4283-9E13-DBBD47422B27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C604273-D411-4283-9E13-DBBD47422B27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04BDC226-842C-40E5-87C2-E34D50475C03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04BDC226-842C-40E5-87C2-E34D50475C03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04BDC226-842C-40E5-87C2-E34D50475C03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04BDC226-842C-40E5-87C2-E34D50475C03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{3FF6B4A2-3B9C-4C6D-90C0-6FE7491C420C} = {AE9320EC-FDE2-4A6C-900F-3C1A7970A768}
-		{3A354F4E-DE86-481B-BF13-0196DAEE0A9C} = {AE9320EC-FDE2-4A6C-900F-3C1A7970A768}
+		{2C604273-D411-4283-9E13-DBBD47422B27} = {AE9320EC-FDE2-4A6C-900F-3C1A7970A768}
+		{04BDC226-842C-40E5-87C2-E34D50475C03} = {AE9320EC-FDE2-4A6C-900F-3C1A7970A768}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9B32B40C-1BBC-4DF6-B144-A4689961BC0D}

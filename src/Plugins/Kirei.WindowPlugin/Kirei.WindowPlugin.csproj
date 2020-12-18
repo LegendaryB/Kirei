@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Kirei.SDK\Kirei.SDK.csproj" />
+    <ProjectReference Include="..\..\Kirei.SDK\Kirei.SDK.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,31 +1,21 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace Kirei.SDK
 {
-    public interface IPlugin : IDisposable
+    public interface IPlugin
     {
-        /// <summary>
-        /// Contains some metadata informations about the plugin. For example the authors name.
-        /// </summary>
-        IPluginMetadata Metadata { get; }
-
-        /// <summary>
-        /// Invoked by the Kirei plugin runtime when the plugin instance is created the
-        /// first time
-        /// </summary>
         Task InitializeAsync();
 
         /// <summary>
-        /// Invoked by the Kirei plugin runtime when the current user state changes
-        /// from idle to active.
+        /// Invoked by the main application when user activity is detected.
         /// </summary>
-        Task OnActiveAsync();
+        /// <returns></returns>
+        Task OnActivityAsync();
 
         /// <summary>
-        /// Invoked by the Kirei plugin runtime when the current user state changes
-        /// from active to idle.
+        /// Invoked by the main application when user idle is detected.
         /// </summary>
+        /// <returns></returns>
         Task OnIdleAsync();
     }
 }

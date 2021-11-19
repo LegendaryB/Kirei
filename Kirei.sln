@@ -18,8 +18,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kirei.TaskbarPlugin", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kirei.WindowPlugin", "src\Plugins\Kirei.WindowPlugin\Kirei.WindowPlugin.csproj", "{04BDC226-842C-40E5-87C2-E34D50475C03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kirei.Inu", "src\Kirei.Inu\Kirei.Inu.csproj", "{7AC17994-40CC-4C4D-A500-436934796831}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,10 +40,6 @@ Global
 		{04BDC226-842C-40E5-87C2-E34D50475C03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04BDC226-842C-40E5-87C2-E34D50475C03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04BDC226-842C-40E5-87C2-E34D50475C03}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7AC17994-40CC-4C4D-A500-436934796831}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7AC17994-40CC-4C4D-A500-436934796831}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7AC17994-40CC-4C4D-A500-436934796831}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7AC17994-40CC-4C4D-A500-436934796831}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

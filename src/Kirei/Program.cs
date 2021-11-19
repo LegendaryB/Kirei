@@ -1,6 +1,7 @@
-﻿using Kirei.Configuration;
+﻿using Kirei.Extensions;
 
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 using System.Threading.Tasks;
 
@@ -8,29 +9,17 @@ namespace Kirei
 {
     class Program
     {
-        private const string SETTINGS_FILE = "appsettings.json";
-
-        public static async Task Main()
+        static async Task Main(string[] args)
         {
-            var services = await ConfigureServicesAsync();
-            var serviceProvider = services.BuildServiceProvider();
-
-            await serviceProvider
-                .GetService<App>()
+            await CreateHostBuilder(args)
+                .Build()
                 .RunAsync();
         }
 
-        private static async Task<IServiceCollection> ConfigureServicesAsync()
-        {
-            var services = new ServiceCollection();
-
-            var settings = await JsonSerializer.DeserializeAsync<AppSettings>(
-                SETTINGS_FILE);
-
-            services.AddSingleton(settings);
-            services.AddSingleton<App>();
-
-            return services;
-        }
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureServices((context, services) =>
+                    services.AddHostedService<App>())
+                .UseStartup();
     }
 }

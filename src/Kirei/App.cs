@@ -1,30 +1,59 @@
-﻿using Kirei.Extensibility;
+﻿using Kirei.Configuration;
 using Kirei.SDK;
 
-using System;
-using System.IO;
-using System.Linq;
-using System.Reflection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+
+using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Kirei
 {
-    internal class App
+    public class App : IHostedService
     {
-        internal async Task RunAsync()
+        private readonly Supervisor _supervisor;
+        private readonly IEnumerable<IPlugin> _plugins;
+
+        public App(
+            IOptions<AppOptions> options,
+            IEnumerable<IPlugin> plugins)
         {
-            var path = @"C:\Users\danie\source\repos\Kirei\src\Kirei.TaskbarPlugin\bin\Debug\netstandard2.1\Kirei.TaskbarPlugin.dll";
-            var loadContext = new PluginLoadContext(path);
+            _supervisor = new Supervisor(
+                options.Value.Supervisor,
+                HandleActivityAsync,
+                HandleIdleAsync);
 
-            var assembly = loadContext.LoadFromAssemblyName(new AssemblyName(
-                Path.GetFileNameWithoutExtension(path)));
+            _plugins = plugins;
+        }
 
-            var pluginType = assembly
-                .GetTypes()
-                .FirstOrDefault(t => typeof(IPlugin).IsAssignableFrom(t));
+        public async Task StartAsync(CancellationToken cancellationToken)
+        {
+            await InitializePluginsAsync();
+            await _supervisor.StartAsync(cancellationToken);
+        }
 
-            var x = Activator.CreateInstance(pluginType) as IPlugin;
-            await x.InitializeAsync();
+        public Task StopAsync(CancellationToken cancellationToken)
+        {
+            return Task.CompletedTask;
+        }        
+
+        private async Task HandleActivityAsync()
+        {
+            foreach (var plugin in _plugins)
+                await plugin.OnActivityAsync();
+        }
+
+        private async Task HandleIdleAsync()
+        {
+            foreach (var plugin in _plugins)
+                await plugin.OnIdleAsync();
+        }
+
+        private async Task InitializePluginsAsync()
+        {
+            foreach (var plugin in _plugins)
+                await plugin.InitializeAsync();
         }
     }
 }

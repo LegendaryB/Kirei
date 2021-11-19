@@ -9,4 +9,8 @@
     <ProjectReference Include="..\..\Kirei.SDK\Kirei.SDK.csproj" />
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy &quot;$(TargetPath)&quot; &quot;$(SolutionDir)\src\Kirei\bin\Debug\netcoreapp3.1\plugins\&quot;" />
+  </Target>
+
 </Project>

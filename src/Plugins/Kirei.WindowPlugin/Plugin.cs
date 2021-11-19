@@ -1,45 +1,73 @@
 ﻿using Kirei.SDK;
-using Kirei.WindowPlugin.COM;
 
+using System;
 using System.Threading.Tasks;
 
 namespace Kirei.WindowPlugin
 {
-    public sealed class Plugin : IPlugin
+    /*
+     * [DllImport("user32.dll", EntryPoint = "FindWindow", SetLastError = true)]
+        static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+        [DllImport("user32.dll", EntryPoint = "SendMessage", SetLastError = true)]
+        static extern IntPtr SendMessage(IntPtr hWnd, Int32 Msg, IntPtr wParam, IntPtr lParam);
+
+        const int WM_COMMAND = 0x111;
+        const int MIN_ALL = 419;
+        const int MIN_ALL_UNDO = 416;
+
+        static async Task Main(string[] args)
+        {
+            IntPtr lHwnd = FindWindow("Shell_TrayWnd", null);
+            SendMessage(lHwnd, WM_COMMAND, (IntPtr)MIN_ALL, IntPtr.Zero);
+            System.Threading.Thread.Sleep(2000);
+            SendMessage(lHwnd, WM_COMMAND, (IntPtr)MIN_ALL_UNDO, IntPtr.Zero);
+            //await CreateHostBuilder(args)
+            //    .Build()
+            //    .RunAsync();
+        }
+    */
+
+    public sealed class Plugin : IPlugin, IDisposable
     {
-        private readonly ShellClass _shell;
-
-        public IPluginMetadata Metadata { get; }
-
         public Plugin()
         {
-            _shell = new ShellClass();
-
-            Metadata = new PluginMetadata();
         }
 
-        public Task InitializeAsync()
+        //public Task InitializeAsync(ILogger logger)
+        //{
+        //    _logger = logger;
+
+        //    return Task.CompletedTask;
+        //}
+
+        //public Task OnActiveAsync()
+        //{
+        //    _shell.UndoMinimizeAll();
+
+        //    return Task.CompletedTask;
+        //}
+
+        //public Task OnIdleAsync()
+        //{
+        //    _shell.MinimizeAll();
+
+        //    return Task.CompletedTask;
+        //} 
+
+        public void Dispose()
         {
-            return Task.CompletedTask;
         }
 
-        public Task OnActiveAsync()
-        {
-            _shell.UndoMinimizeAll();
+        public Task InitializeAsync() => Task.CompletedTask;
 
-            return Task.CompletedTask;
+        public Task OnActivityAsync()
+        {
+            throw new NotImplementedException();
         }
 
         public Task OnIdleAsync()
         {
-            _shell.MinimizeAll();
-
-            return Task.CompletedTask;
-        }       
-
-        public void Dispose()
-        {
-            _shell.Dispose();
+            throw new NotImplementedException();
         }
     }
 }

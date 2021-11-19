@@ -9,45 +9,38 @@ namespace Kirei.TaskbarPlugin
 {
     public sealed class Plugin : IPlugin
     {
-        private readonly List<TaskbarWindow> _windows;
+        private const string CLASSNAME_START_IDENTIFIER = "Shell_";
+        private const string CLASSNAME_END_IDENTIFIER = "TrayWnd";
 
-        public IPluginMetadata Metadata { get; }
-
-        public Plugin()
-        {
-            _windows = new List<TaskbarWindow>();
-
-            Metadata = new PluginMetadata();
-        }
+        private List<Window> _windows;
 
         public async Task InitializeAsync()
         {
-            var windows = await FindTaskbarWindowsAsync();
-            _windows.AddRange(windows);
+            _windows = await FindTaskbarWindowsAsync();
         }
 
-        public Task OnActiveAsync()
+        public Task OnActivityAsync()
         {
-            throw new System.NotImplementedException();
+            return Task.CompletedTask;
         }
 
         public Task OnIdleAsync()
         {
-            throw new System.NotImplementedException();
+            return Task.CompletedTask;
         }
 
-        private Task<List<TaskbarWindow>> FindTaskbarWindowsAsync()
+        private Task<List<Window>> FindTaskbarWindowsAsync()
         {
-            var tcs = new TaskCompletionSource<List<TaskbarWindow>>();
-            var windows = new List<TaskbarWindow>();
+            var tcs = new TaskCompletionSource<List<Window>>();
+            var windows = new List<Window>();
 
             bool enumWindowsProc(IntPtr hWnd, IntPtr lParam)
             {
                 var lpClassName = User32.GetClassName(hWnd);
 
-                if (lpClassName.StartsWith("Shell_") && lpClassName.EndsWith("TrayWnd"))
+                if (lpClassName.StartsWith(CLASSNAME_START_IDENTIFIER) && lpClassName.EndsWith(CLASSNAME_END_IDENTIFIER))
                 {
-                    windows.Add(TaskbarWindow.Create(
+                    windows.Add(new Window(
                         hWnd,
                         lpClassName));
                 }
@@ -62,11 +55,6 @@ namespace Kirei.TaskbarPlugin
             tcs.SetResult(windows);
 
             return tcs.Task;
-        }
-
-        public void Dispose()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }
